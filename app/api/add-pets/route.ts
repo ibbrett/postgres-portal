@@ -8,11 +8,11 @@ export async function GET(request: Request) {
  
   try {
     if (!petName || !ownerName) throw new Error('Pet and owner names required');
-    await sql`INSERT INTO Pets (Name, Owner) VALUES (${petName}, ${ownerName});`;
+    await sql`INSERT INTO pets (name, owner) VALUES (${petName}, ${ownerName});`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
  
-  const pets = await sql`SELECT * FROM Pets;`;
+  const pets = await sql`SELECT * FROM pets;`;
   return NextResponse.json({ pets }, { status: 200 });
 }

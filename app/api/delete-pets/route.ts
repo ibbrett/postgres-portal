@@ -7,11 +7,11 @@ export async function GET(request: Request) {
  
   try {
     if (!petName) throw new Error('Pet name required');
-    await sql`DELETE FROM Pets WHERE Name = '${petName}';`;
+    await sql`DELETE FROM pets WHERE name='${petName}';`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
  
-  const pets = await sql`SELECT * FROM Pets;`;
+  const pets = await sql`SELECT * FROM pets;`;
   return NextResponse.json({ pets }, { status: 200 });
 }
