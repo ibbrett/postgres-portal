@@ -1,13 +1,16 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
+
+// change this to Id
+// add note here
  
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const petId = searchParams.get('petId');
+  const petName = searchParams.get('petName');
  
   try {
-    if (!petId) throw new Error('Pet id required');
-    await sql`DELETE FROM pets WHERE id=${petId};`;
+    if (!petName) throw new Error('Pet name required');
+    await sql`DELETE FROM pets WHERE name='${petName}';`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
