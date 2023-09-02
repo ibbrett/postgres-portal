@@ -4,13 +4,13 @@ import {useUtils} from '@/hooks/useUtils'
 import {FaTrash, FaEdit} from 'react-icons/fa'
 
 type EventItemProps = {
-  id: string
+  id: number
   timestamp: number
   detail: string | null
   summary: string
   complete: boolean
-  toggleItem: (id: string, complete: boolean) => void
-  deleteItem: (id: string) => void
+  toggleItem: (id: number, complete: boolean) => void
+  deleteItem: (id: number) => void
 }
 
 const itemContainerStyle = 'flex gap-1 item-center my-2'
@@ -34,13 +34,13 @@ export function EventItem({
   return (
     <li className={itemContainerStyle} key={id}>
       <input
-        id={id}
+        id={id.toString()}
         type="checkbox"
         className={itemFieldStyle}
         defaultChecked={complete}
         onChange={e => toggleItem(id, e.target.checked)}
       />
-      <label htmlFor={id} className={itemLabelStyle}>
+      <label htmlFor={id.toString()} className={itemLabelStyle}>
         {normalizeDateTimeTitle(timestamp, summary)}
       </label>
       <span

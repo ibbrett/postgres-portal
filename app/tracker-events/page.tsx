@@ -5,11 +5,12 @@ import {EventItem} from '@/components/EventItem'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
 
-function toggleItem(id: string, complete: boolean) {
-  console.log('toggleItem', id, complete)
+function toggleItem(id: number, complete: boolean) {
+  // console.log('toggleItem', id, complete)
+  console.log('toggleItem')
 }
 
-function deleteItem(id: string) {
+function deleteItem(id: number) {
   console.log('deleteItem', id)
 }
 
@@ -82,7 +83,7 @@ export default function Home() {
       {/* <pre>{JSON.stringify(activeEvents)}</pre> */}
 
       <ul className="pl-1">
-        {activeEvents?.map(event => (
+        {activeEvents.map(event => (
           <EventItem
             key={event.id}
             {...event}
