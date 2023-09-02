@@ -2,6 +2,7 @@ import {sql} from '@vercel/postgres'
 import {NextResponse} from 'next/server'
 export async function POST(request: Request) {
   try {
+    console.log('request.method', request.method)
     if (request.method !== 'POST') {
       return NextResponse.json(
         {message: 'Only POST requests allowed'},
