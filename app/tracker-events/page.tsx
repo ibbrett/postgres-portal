@@ -6,13 +6,26 @@ import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
 
 function toggleItem(id: number, complete: boolean) {
-  // console.log('toggleItem', id, complete)
-  console.log('toggleItem')
+  console.log('toggleItem', id, complete)
 }
 
 function deleteItem(id: number) {
   console.log('deleteItem', id)
 }
+
+/*
+async function toggleItem(id: string, complete: boolean) {
+  "use server"
+  await prisma.event.update({where: {id}, data: {complete}});
+  // redirect("/");
+}
+
+async function deleteItem(id: string) {
+ "use server"
+  await prisma.event.delete({where: {id}});
+  redirect("/");
+}
+*/
 
 type eventProp = {
   id: number
@@ -26,6 +39,9 @@ type eventProp = {
 }
 
 //const defaultEventsState = {events: []}
+
+// DELETEME
+const origin = process.env.NEXT_PUBLIC_ORIGIN
 
 // eventProp //
 
@@ -70,7 +86,7 @@ export default function Home() {
   return (
     <>
       <header className="flex justify-between mb-4 items-center">
-        <h1 className="text-2xl">Events</h1>
+        <h1 className="text-2xl">Events {origin}</h1>
         <Link
           className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
           href="/tracker-events/new"

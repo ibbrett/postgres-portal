@@ -7,11 +7,15 @@ type EVENT_FUNCTION = (data: FormData) => void
 type EventFormProps = {
   CreateEvent: EVENT_FUNCTION
 }
+
+// DELETEME
+const origin = process.env.NEXT_PUBLIC_ORIGIN
+
 export function EventForm({CreateEvent}: EventFormProps) {
   return (
     <>
       <header className="flex justify-between mb-4 items-center">
-        <h1 className="text-2xl">New Event</h1>
+        <h1 className="text-2xl">New Event {origin}</h1>
       </header>
       <form action={CreateEvent} className="flex gap-2 flex-col">
         <span>Summary ( Title )</span>{' '}
