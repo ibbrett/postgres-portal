@@ -34,6 +34,9 @@ const useData = () => {
         const response = await fetch(`${origin}/api/create-event`, {
           method: 'POST',
           body: JSON.stringify(payload),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         })
 
         const data = await response.json()
