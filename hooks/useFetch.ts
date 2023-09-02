@@ -1,9 +1,13 @@
+//const useFetch = (origin: string | undefined) => {
 const useFetch = () => {
-  const protocol = 'http'
-  const host = 'localhost'
-  const port = '3000'
+  //const protocol = 'http'
+  //const host = 'localhost'
+  //const port = '3000'
+  //const origin = process.env.APP_ORIGIN
   const api = 'api'
-  const apiPath = `${protocol}://${host}:${port}/${api}`
+  //const apiPath = `${protocol}://${host}:${port}/${api}`
+  const origin = process.env.NEXT_PUBLIC_ORIGIN
+  const apiPath = `${origin}/${api}`
 
   const fetchSessions = async () => {
     return fetchData(`${apiPath}/get-sections`)
@@ -15,6 +19,14 @@ const useFetch = () => {
 
   const fetchEvents = async () => {
     return fetchData(`${apiPath}/get-events`)
+  }
+
+  const fetchActiveEvents = async () => {
+    return fetchData(`${apiPath}/get-events?complete=0`)
+  }
+
+  const fetchArchivedEvents = async () => {
+    return fetchData(`${apiPath}/get-events?complete=1`)
   }
 
   const fetchData = async (url: string) => {
@@ -37,6 +49,8 @@ const useFetch = () => {
     fetchSessions,
     fetchLogs,
     fetchEvents,
+    fetchActiveEvents,
+    fetchArchivedEvents,
   }
 }
 
