@@ -30,7 +30,8 @@ const useData = () => {
       console.log(payload)
 
       const postFormData = async () => {
-        const origin = 'http://localhost:3000' // process.env.APP_ORIGIN
+        // const origin = 'http://localhost:3000' // process.env.APP_ORIGIN
+        const origin = process.env.NEXT_PUBLIC_ORIGIN
         const response = await fetch(`${origin}/api/create-event`, {
           method: 'POST',
           body: JSON.stringify(payload),
