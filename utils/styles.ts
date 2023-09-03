@@ -15,7 +15,6 @@ const itemDeleteStyle =
   'bg-gray-300 hover:bg-gray-400 text-red-700 font-bold px-1 ml-4 rounded inline-flex items-center'
 const ulStyle = 'pl-1'
 const rowStyle = 'flex justify-left'
-const inlineMarginSpace = 'm-4 bg-green-800 text-white cursor-pointer peer'
 
 export {
   formFieldStyle,
@@ -31,5 +30,4 @@ export {
   itemDeleteStyle,
   ulStyle,
   rowStyle,
-  inlineMarginSpace,
 }

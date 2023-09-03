@@ -5,14 +5,7 @@ import {EventItem} from '@/components/EventItem'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
 import {FaArrowUp, FaArrowDown} from 'react-icons/fa'
-import {
-  linkStyle,
-  ulStyle,
-  headerStyle,
-  h1Style,
-  rowStyle,
-  inlineMarginSpace,
-} from '../../utils/styles'
+import {linkStyle, ulStyle, headerStyle, h1Style, rowStyle} from '../../utils/styles'
 
 function deleteItem(id: number) {
   console.log('deleteItem', id)
