@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import {DateTime} from '@/components/DateTime'
-import {formFieldStyle, formButtonStyle} from '@/utils/styles'
+import {formFieldStyle, linkStyle} from '@/utils/styles'
 
 type EVENT_FUNCTION = (data: FormData) => void
 
@@ -24,10 +24,10 @@ export function EventForm({CreateEvent}: EventFormProps) {
         <span>Date / Time</span>
         <DateTime name="timestamp" />
         <div className="flex gap-1 justify-end">
-          <Link href=".." className={formButtonStyle}>
+          <Link href=".." className={linkStyle}>
             Cancel
           </Link>
-          <button type="submit" className={formButtonStyle}>
+          <button type="submit" className={linkStyle}>
             Create
           </button>
         </div>

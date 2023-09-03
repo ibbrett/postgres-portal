@@ -70,12 +70,6 @@ async function CreateEvent(data: FormData) {
   redirect('/')
 }
 
-// const formFieldStyle = "border border-slate-300 text-slate-300 bg-transparent px-2 py-1 rounded focus-within:border-slate-100 outline-none";
-const formFieldStyle =
-  'border border-black text-black bg-white px-2 py-1 rounded focus-within:border-slate-100 outline-none'
-const formButtonStyle =
-  'border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none'
-
 export default function Page() {
   return (
     <>
@@ -92,10 +86,10 @@ export default function Page() {
         <span>Date / Time</span>
         <DateTime name="ts" />
         <div className="flex gap-1 justify-end">
-          <Link href=".." className={formButtonStyle}>
+          <Link href=".." className={linkStyle}>
             Cancel
           </Link>
-          <button type="submit" className={formButtonStyle}>
+          <button type="submit" className={linkStyle}>
             Create
           </button>
         </div>

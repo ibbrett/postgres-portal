@@ -4,12 +4,7 @@ import Link from 'next/link'
 // import { DateTime } from "@/components/DateTime";
 import {useFiles} from '@/hooks/useFiles'
 import {FaArrowLeft} from 'react-icons/fa'
-import {
-  formButtonStyle,
-  formFieldStyle,
-  headerStyle,
-  h1Style,
-} from '../../utils/styles'
+import {linkStyle, formFieldStyle, headerStyle, h1Style} from '../../utils/styles'
 
 async function CreateEvent(data: FormData) {
   'use server'
@@ -31,7 +26,7 @@ export default function Page() {
     <>
       <header className={headerStyle}>
         <h1 className={h1Style}>Setting</h1>
-        <Link href=".." className={formButtonStyle}>
+        <Link href=".." className={linkStyle}>
           <FaArrowLeft />
         </Link>
       </header>
@@ -44,7 +39,7 @@ export default function Page() {
           className={formFieldStyle}
         />
         <div className="flex gap-1 justify-end">
-          <button type="submit" className={formButtonStyle}>
+          <button type="submit" className={linkStyle}>
             Save Updates
           </button>
         </div>

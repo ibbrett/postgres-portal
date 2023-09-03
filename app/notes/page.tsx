@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {FaTrash, FaEdit, FaArrowLeft} from 'react-icons/fa'
 import {
-  formButtonStyle,
+  linkStyle,
   iconSampleStyle,
   preStyle,
   headerStyle,
@@ -13,7 +13,7 @@ export default function Page() {
     <>
       <header className={headerStyle}>
         <h1 className={h1Style}>Notes</h1>
-        <Link href=".." className={formButtonStyle}>
+        <Link href=".." className={linkStyle}>
           <FaArrowLeft />
         </Link>
       </header>
