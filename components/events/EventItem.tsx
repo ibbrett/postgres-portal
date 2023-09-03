@@ -5,10 +5,6 @@ import {FaTrash, FaEdit} from 'react-icons/fa'
 import {ToggleEventComplete} from '@/components/events/ToggleEventComplete'
 import {itemContainerStyle, itemLabelStyle, itemDeleteStyle} from '@/utils/styles'
 
-type IsReadyProp = {
-  isReady: boolean
-}
-
 type EventItemProps = {
   id: number
   timestamp: number
@@ -16,7 +12,6 @@ type EventItemProps = {
   summary: string
   complete: boolean
   deleteItem: (id: number) => void
-  setEventsReady: ({}: IsReadyProp) => void
   moveToggledEvent: (id: number, complete: boolean) => void
 }
 
@@ -27,7 +22,6 @@ export function EventItem({
   summary,
   complete,
   deleteItem,
-  setEventsReady,
   moveToggledEvent,
 }: EventItemProps) {
   const {normalizeDateTimeTitle} = useUtils()
@@ -37,7 +31,6 @@ export function EventItem({
       <ToggleEventComplete
         id={id}
         complete={complete}
-        setEventsReady={setEventsReady}
         moveToggledEvent={moveToggledEvent}
       />
       <label htmlFor={id.toString()} className={itemLabelStyle}>

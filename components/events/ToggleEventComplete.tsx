@@ -1,19 +1,14 @@
 import {itemFieldStyle} from '@/utils/styles'
 
-type IsReadyProp = {
-  isReady: boolean
-}
 type toggleCheckProps = {
   id: number
   complete: boolean
-  setEventsReady: ({}: IsReadyProp) => void
   moveToggledEvent: (id: number, complete: boolean) => void
 }
 
 export function ToggleEventComplete({
   id,
   complete,
-  setEventsReady,
   moveToggledEvent,
 }: toggleCheckProps) {
   async function toggleItem(id: number, complete: boolean) {
@@ -26,16 +21,6 @@ export function ToggleEventComplete({
         'Content-Type': 'application/json',
       },
     })
-
-    /*
-    console.log('response', response)
-    if (response.status === 200) {
-      console.log('response status is 200 - proceed with awesomeness')
-      console.log('response.body', response.body)
-    } else {
-      console.log('response status is NOT 200 - sumpin happn')
-    }*/
-    // setEventsReady({isReady: false})
     moveToggledEvent(id, complete)
   }
 

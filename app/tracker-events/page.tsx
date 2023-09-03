@@ -11,10 +11,6 @@ function deleteItem(id: number) {
   console.log('deleteItem', id)
 }
 
-type IsReadyProp = {
-  isReady: boolean
-}
-
 type eventProp = {
   id: number
   section_id: number
@@ -30,7 +26,6 @@ export default function Home() {
   const defaultEventsState: eventProp[] = []
   const [activeEvents, setActiveEvents] = useState(defaultEventsState)
   const [archivedEvents, setArchivedEvents] = useState(defaultEventsState)
-  const [eventsReady, setEventsReady] = useState<IsReadyProp>({isReady: false})
   const {fetchActiveEvents, fetchArchivedEvents} = useFetch()
 
   function orderEvents(
@@ -84,14 +79,11 @@ export default function Home() {
     const archivedEvents = await fetchArchivedEvents()
     setActiveEvents(activeEvents)
     setArchivedEvents(archivedEvents)
-    setEventsReady({isReady: true})
   }
 
   useEffect(() => {
-    if (eventsReady.isReady === false) {
-      doFetch()
-    }
-  }, [eventsReady.isReady])
+    doFetch()
+  }, [])
 
   return (
     <>
@@ -121,7 +113,6 @@ export default function Home() {
             key={event.id}
             {...event}
             deleteItem={deleteItem}
-            setEventsReady={setEventsReady}
             moveToggledEvent={moveToggledEvent}
           />
         ))}
@@ -145,7 +136,6 @@ export default function Home() {
             key={event.id}
             {...event}
             deleteItem={deleteItem}
-            setEventsReady={setEventsReady}
             moveToggledEvent={moveToggledEvent}
           />
         ))}
