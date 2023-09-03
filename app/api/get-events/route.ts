@@ -6,9 +6,10 @@ export async function GET(request: Request) {
   let events
   try {
     if (complete === null) {
-      events = await sql`SELECT * FROM event;`
+      events = await sql`SELECT * FROM event ORDER BY timestamp;`
     } else {
-      events = await sql`SELECT * FROM event WHERE complete=${complete};`
+      events =
+        await sql`SELECT * FROM event WHERE complete=${complete} ORDER BY timestamp;`
     }
     console.log('events', JSON.stringify(events))
     return NextResponse.json(events.rows, {status: 200})
