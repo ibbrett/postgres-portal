@@ -5,27 +5,21 @@ import {EventItem} from '@/components/EventItem'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
 
-function toggleItem(id: number, complete: boolean) {
-  console.log('toggleItem', id, complete)
-}
-
 function deleteItem(id: number) {
   console.log('deleteItem', id)
 }
 
 /*
-async function toggleItem(id: string, complete: boolean) {
-  "use server"
-  await prisma.event.update({where: {id}, data: {complete}});
-  // redirect("/");
-}
-
 async function deleteItem(id: string) {
  "use server"
   await prisma.event.delete({where: {id}});
   redirect("/");
 }
 */
+
+type IsReadyProp = {
+  isReady: boolean
+}
 
 type eventProp = {
   id: number
@@ -38,18 +32,13 @@ type eventProp = {
   updated_at: string
 }
 
-//const defaultEventsState = {events: []}
-
-// DELETEME
-const origin = process.env.NEXT_PUBLIC_ORIGIN
-
-// eventProp //
-
 export default function Home() {
+  //const {UpdateEvent} = useData()
+
   const defaultEventsState: eventProp[] = []
   const [activeEvents, setActiveEvents] = useState(defaultEventsState)
   const [archivedEvents, setArchivedEvents] = useState(defaultEventsState)
-  //const [eventsReady, setEventsReady] = useState(false)
+  const [eventsReady, setEventsReady] = useState<IsReadyProp>({isReady: false})
   const {fetchActiveEvents, fetchArchivedEvents} = useFetch()
 
   /*
@@ -58,24 +47,28 @@ export default function Home() {
   results = await fetchArchivedEvents()
   setArchivedEvents(archivedEvents)
 */
+  async function doFetch() {
+    const activeEvents = await fetchActiveEvents()
+    const archivedEvents = await fetchArchivedEvents()
+    // if(activeEvents.events)
+    setActiveEvents(activeEvents)
+    setArchivedEvents(archivedEvents)
+    //setEventsReady(true)
+
+    if (activeEvents.events) {
+      console.log('we have events')
+    } else {
+      console.log('we DO NOT have events')
+    }
+
+    setEventsReady({isReady: true})
+  }
 
   useEffect(() => {
-    async function doFetch() {
-      const activeEvents = await fetchActiveEvents()
-      const archivedEvents = await fetchArchivedEvents()
-      // if(activeEvents.events)
-      setActiveEvents(activeEvents)
-      setArchivedEvents(archivedEvents)
-      //setEventsReady(true)
-
-      if (activeEvents.events) {
-        console.log('we have events')
-      } else {
-        console.log('we DO NOT have events')
-      }
+    if (eventsReady.isReady === false) {
+      doFetch()
     }
-    doFetch()
-  }, [])
+  }, [eventsReady.isReady])
 
   //const activeEvents = await getActiveEvents()
   //const archivedEvents = await getArchivedEvents()
@@ -86,7 +79,7 @@ export default function Home() {
   return (
     <>
       <header className="flex justify-between mb-4 items-center">
-        <h1 className="text-2xl">Events {origin}</h1>
+        <h1 className="text-2xl">Events</h1>
         <Link
           className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
           href="/tracker-events/new"
@@ -103,8 +96,8 @@ export default function Home() {
           <EventItem
             key={event.id}
             {...event}
-            toggleItem={toggleItem}
             deleteItem={deleteItem}
+            setEventsReady={setEventsReady}
           />
         ))}
       </ul>
@@ -115,8 +108,8 @@ export default function Home() {
           <EventItem
             key={event.id}
             {...event}
-            toggleItem={toggleItem}
             deleteItem={deleteItem}
+            setEventsReady={setEventsReady}
           />
         ))}
       </ul>

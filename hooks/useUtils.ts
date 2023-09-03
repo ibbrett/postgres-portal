@@ -35,6 +35,7 @@ const useUtils = () => {
     try {
       const date = new Date()
       date.setTime(unixTimestamp)
+
       // dateTimeTitle = date.toISOString();
 
       // build date string, add padding
@@ -45,13 +46,18 @@ const useUtils = () => {
       let day = DAY[date.getDay()]
       let dayNum = date.getDate()
       let hours = date.getHours().toString()
-      let minutes = date.getMinutes()
+      let minutes = date.getMinutes().toString()
+
+      //console.log(unixTimestamp, date, hours, minutes)
+
       let tm = ''
       if (hours) {
         if (parseInt(hours, 10) < 10) hours = '0' + String(hours)
-        if (minutes < 10) hours = '0' + String(minutes)
+        if (parseInt(minutes, 10) < 10) minutes = '0' + String(minutes)
         tm = ` ${hours}:${minutes}`
       }
+
+      console.log(unixTimestamp, date, hours, minutes)
 
       const format = 1
       if (format === 1) {
@@ -74,6 +80,7 @@ const useUtils = () => {
       //document.write(header);
       // ## Thursday January 5, 2023 -
       // Monday Oct 25, 2021
+      console.log(unixTimestamp, date, dateTimeTitle)
       return dateTimeTitle
     } catch (e) {
       console.error('Invalid Timestamp', e)

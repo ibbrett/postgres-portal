@@ -10,6 +10,12 @@ const preStyle = 'border border-slate-300 px-5 my-5'
 const headerStyle = 'flex justify-between mb-4 items-center'
 const h1Style = 'text-2xl'
 const mainStyle = 'm-4 p-4 bg-green-800'
+const itemContainerStyle = 'flex gap-1 item-center my-2'
+const itemFieldStyle = 'cursor-pointer peer'
+const itemLabelStyle =
+  'cursor-pointer peer-checked:line-through peer-checked:text-slate-500'
+const itemDeleteStyle =
+  'bg-gray-300 hover:bg-gray-400 text-red-700 font-bold px-1 ml-4 rounded inline-flex items-center'
 
 export {
   formButtonStyle,
@@ -20,4 +26,8 @@ export {
   headerStyle,
   h1Style,
   mainStyle,
+  itemContainerStyle,
+  itemFieldStyle,
+  itemLabelStyle,
+  itemDeleteStyle,
 }

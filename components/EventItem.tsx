@@ -2,6 +2,12 @@
 
 import {useUtils} from '@/hooks/useUtils'
 import {FaTrash, FaEdit} from 'react-icons/fa'
+import {ToggleCheck} from './ToggleCheck'
+import {itemContainerStyle, itemLabelStyle, itemDeleteStyle} from '@/utils/styles'
+
+type IsReadyProp = {
+  isReady: boolean
+}
 
 type EventItemProps = {
   id: number
@@ -9,16 +15,14 @@ type EventItemProps = {
   detail: string | null
   summary: string
   complete: boolean
-  toggleItem: (id: number, complete: boolean) => void
   deleteItem: (id: number) => void
+  setEventsReady: ({}: IsReadyProp) => void
 }
 
-const itemContainerStyle = 'flex gap-1 item-center my-2'
-const itemFieldStyle = 'cursor-pointer peer'
-const itemLabelStyle =
-  'cursor-pointer peer-checked:line-through peer-checked:text-slate-500'
-const itemDeleteStyle =
-  'bg-gray-300 hover:bg-gray-400 text-red-700 font-bold px-1 ml-4 rounded inline-flex items-center'
+/*
+interface iprops {
+  setloginstatus: dispatch<setEventsReady<boolean>>
+}*/
 
 export function EventItem({
   id,
@@ -26,20 +30,14 @@ export function EventItem({
   detail,
   summary,
   complete,
-  toggleItem,
   deleteItem,
+  setEventsReady,
 }: EventItemProps) {
   const {normalizeDateTimeTitle} = useUtils()
 
   return (
     <li className={itemContainerStyle} key={id}>
-      <input
-        id={id.toString()}
-        type="checkbox"
-        className={itemFieldStyle}
-        defaultChecked={complete}
-        onChange={e => toggleItem(id, e.target.checked)}
-      />
+      <ToggleCheck id={id} complete={complete} setEventsReady={setEventsReady} />
       <label htmlFor={id.toString()} className={itemLabelStyle}>
         {normalizeDateTimeTitle(timestamp, summary)}
       </label>
