@@ -44,6 +44,41 @@ export default function Home() {
     setEvents(eventsClone)
   }
 
+  function moveToggledEvent(id: number, complete: boolean) {
+    console.log(`moveToggledEvent: ${id} - ${complete}`)
+
+    const activeEventsClone = [...activeEvents]
+    const archivedEventsClone = [...archivedEvents]
+
+    // if false, find id in archived, move to active
+    if (complete === true) {
+      const foundItem = archivedEventsClone.find(item => item.id === id)
+      if (foundItem !== undefined) {
+        foundItem.complete = !complete
+        // ! gets around error: Argument of type 'eventProp | undefined' is not assignable to parameter of type
+        // it's saying you can trust this value
+        // https://stackoverflow.com/questions/54496398/typescript-type-string-undefined-is-not-assignable-to-type-string
+        activeEventsClone.push(foundItem!)
+        setActiveEvents(activeEventsClone)
+        const filteredEvents = archivedEvents.filter(item => item.id !== id)
+        console.log(foundItem, filteredEvents)
+        setArchivedEvents(filteredEvents)
+      }
+    } else {
+      const foundItem = activeEventsClone.find(item => item.id === id)
+      if (foundItem !== undefined) {
+        foundItem.complete = !complete
+        archivedEventsClone.push(foundItem!)
+        setArchivedEvents(archivedEventsClone)
+        const filteredEvents = activeEvents.filter(item => item.id !== id)
+        console.log(foundItem, filteredEvents)
+        setActiveEvents(filteredEvents)
+      }
+    }
+
+    // else, find id in active, move to  archived
+  }
+
   async function doFetch() {
     const activeEvents = await fetchActiveEvents()
     const archivedEvents = await fetchArchivedEvents()
@@ -87,6 +122,7 @@ export default function Home() {
             {...event}
             deleteItem={deleteItem}
             setEventsReady={setEventsReady}
+            moveToggledEvent={moveToggledEvent}
           />
         ))}
       </ul>
@@ -110,6 +146,7 @@ export default function Home() {
             {...event}
             deleteItem={deleteItem}
             setEventsReady={setEventsReady}
+            moveToggledEvent={moveToggledEvent}
           />
         ))}
       </ul>

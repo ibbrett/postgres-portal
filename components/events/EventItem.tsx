@@ -17,12 +17,8 @@ type EventItemProps = {
   complete: boolean
   deleteItem: (id: number) => void
   setEventsReady: ({}: IsReadyProp) => void
+  moveToggledEvent: (id: number, complete: boolean) => void
 }
-
-/*
-interface iprops {
-  setloginstatus: dispatch<setEventsReady<boolean>>
-}*/
 
 export function EventItem({
   id,
@@ -32,6 +28,7 @@ export function EventItem({
   complete,
   deleteItem,
   setEventsReady,
+  moveToggledEvent,
 }: EventItemProps) {
   const {normalizeDateTimeTitle} = useUtils()
 
@@ -41,6 +38,7 @@ export function EventItem({
         id={id}
         complete={complete}
         setEventsReady={setEventsReady}
+        moveToggledEvent={moveToggledEvent}
       />
       <label htmlFor={id.toString()} className={itemLabelStyle}>
         {normalizeDateTimeTitle(timestamp, summary)}
