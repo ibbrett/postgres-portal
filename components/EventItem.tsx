@@ -2,7 +2,7 @@
 
 import {useUtils} from '@/hooks/useUtils'
 import {FaTrash, FaEdit} from 'react-icons/fa'
-import {ToggleCheck} from './ToggleCheck'
+import {ToggleEventComplete} from './ToggleEventComplete'
 import {itemContainerStyle, itemLabelStyle, itemDeleteStyle} from '@/utils/styles'
 
 type IsReadyProp = {
@@ -37,7 +37,11 @@ export function EventItem({
 
   return (
     <li className={itemContainerStyle} key={id}>
-      <ToggleCheck id={id} complete={complete} setEventsReady={setEventsReady} />
+      <ToggleEventComplete
+        id={id}
+        complete={complete}
+        setEventsReady={setEventsReady}
+      />
       <label htmlFor={id.toString()} className={itemLabelStyle}>
         {normalizeDateTimeTitle(timestamp, summary)}
       </label>

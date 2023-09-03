@@ -9,7 +9,11 @@ type toggleCheckProps = {
   setEventsReady: ({}: IsReadyProp) => void
 }
 
-export function ToggleCheck({id, complete, setEventsReady}: toggleCheckProps) {
+export function ToggleEventComplete({
+  id,
+  complete,
+  setEventsReady,
+}: toggleCheckProps) {
   async function toggleItem(id: number) {
     const origin = process.env.NEXT_PUBLIC_ORIGIN
     const payload = {data: {id}}
