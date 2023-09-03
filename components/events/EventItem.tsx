@@ -2,7 +2,7 @@
 
 import {useUtils} from '@/hooks/useUtils'
 import {FaTrash, FaEdit} from 'react-icons/fa'
-import {ToggleEventComplete} from './ToggleEventComplete'
+import {ToggleEventComplete} from '@/components/events/ToggleEventComplete'
 import {itemContainerStyle, itemLabelStyle, itemDeleteStyle} from '@/utils/styles'
 
 type IsReadyProp = {
