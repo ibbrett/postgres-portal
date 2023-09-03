@@ -36,19 +36,15 @@ const useUtils = () => {
       const date = new Date()
       date.setTime(unixTimestamp)
 
-      // dateTimeTitle = date.toISOString();
-
       // build date string, add padding
       const padMonth = false
       const padDay = true
-      // const date = new Date(dateString);
+
       let month = MONTH[date.getMonth()]
       let day = DAY[date.getDay()]
       let dayNum = date.getDate()
       let hours = date.getHours().toString()
       let minutes = date.getMinutes().toString()
-
-      //console.log(unixTimestamp, date, hours, minutes)
 
       let tm = ''
       if (hours) {
@@ -56,8 +52,6 @@ const useUtils = () => {
         if (parseInt(minutes, 10) < 10) minutes = '0' + String(minutes)
         tm = ` ${hours}:${minutes}`
       }
-
-      console.log(unixTimestamp, date, hours, minutes)
 
       const format = 1
       if (format === 1) {
@@ -73,14 +67,7 @@ const useUtils = () => {
       }
 
       // prepend some text, append description string
-      // dateTimeTitle = '## ' + dateTimeTitle + ' - ' + desc;
       dateTimeTitle = dateTimeTitle + ' - ' + desc
-
-      //console.log( "normalizeLogHeader", header );
-      //document.write(header);
-      // ## Thursday January 5, 2023 -
-      // Monday Oct 25, 2021
-      console.log(unixTimestamp, date, dateTimeTitle)
       return dateTimeTitle
     } catch (e) {
       console.error('Invalid Timestamp', e)
