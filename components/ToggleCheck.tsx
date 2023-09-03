@@ -13,7 +13,7 @@ export function ToggleCheck({id, complete, setEventsReady}: toggleCheckProps) {
   async function toggleItem(id: number) {
     const origin = process.env.NEXT_PUBLIC_ORIGIN
     const payload = {data: {id}}
-    const response = await fetch(`${origin}/api/update-event`, {
+    const response = await fetch(`${origin}/api/toggle-event-complete`, {
       method: 'PUT',
       body: JSON.stringify(payload),
       headers: {
