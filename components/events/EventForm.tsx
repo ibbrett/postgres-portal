@@ -5,16 +5,16 @@ import {formFieldStyle, linkStyle} from '@/utils/styles'
 type EVENT_FUNCTION = (data: FormData) => void
 
 type EventFormProps = {
-  CreateEvent: EVENT_FUNCTION
+  SaveNewEvent: EVENT_FUNCTION
 }
 
-export function EventForm({CreateEvent}: EventFormProps) {
+export function EventForm({SaveNewEvent}: EventFormProps) {
   return (
     <>
       <header className="flex justify-between mb-4 items-center">
         <h1 className="text-2xl">New Event</h1>
       </header>
-      <form action={CreateEvent} className="flex gap-2 flex-col">
+      <form action={SaveNewEvent} className="flex gap-2 flex-col">
         <span>Summary ( Title )</span>{' '}
         <input type="text" name="summary" className={formFieldStyle} />
         <span>Detail</span> <textarea name="detail" className={formFieldStyle} />

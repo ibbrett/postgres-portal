@@ -3,5 +3,5 @@ import {useData} from '@/hooks/useData'
 
 export default function Page() {
   const {SaveEvent} = useData()
-  return <EventForm CreateEvent={SaveEvent} />
+  return <EventForm SaveNewEvent={SaveEvent} />
 }
