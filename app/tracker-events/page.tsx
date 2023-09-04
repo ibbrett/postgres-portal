@@ -11,6 +11,10 @@ function deleteItem(id: number) {
   console.log('deleteItem', id)
 }
 
+type IsAscProp = {
+  isAsc: boolean
+}
+
 type eventProp = {
   id: number
   section_id: number
@@ -27,21 +31,21 @@ export default function Home() {
   const [activeEvents, setActiveEvents] = useState(defaultEventsState)
   const [archivedEvents, setArchivedEvents] = useState(defaultEventsState)
   const {fetchActiveEvents, fetchArchivedEvents} = useFetch()
+  const [sortActiveEventsAsc, setSortActiveEventsAsc] = useState<IsAscProp>({
+    isAsc: true,
+  })
+  const [sortArchivedEventsAsc, setSortArchivedEventsAsc] = useState<IsAscProp>({
+    isAsc: true,
+  })
 
-  function orderEvents(
-    events: eventProp[],
-    setEvents: <eventProp>([]) => void,
-    asc: boolean
-  ) {
-    const eventsClone = [...events]
-    if (asc === true) eventsClone.sort((a, b) => a.timestamp - b.timestamp)
-    else eventsClone.sort((a, b) => b.timestamp - a.timestamp)
-    setEvents(eventsClone)
+  function orderEvents(events: eventProp[], asc: boolean) {
+    const clone = [...events]
+    if (asc === true) clone.sort((a, b) => a.timestamp - b.timestamp)
+    else clone.sort((a, b) => b.timestamp - a.timestamp)
+    return clone
   }
 
   function moveToggledEvent(id: number, complete: boolean) {
-    console.log(`moveToggledEvent: ${id} - ${complete}`)
-
     const activeEventsClone = [...activeEvents]
     const archivedEventsClone = [...archivedEvents]
 
@@ -54,31 +58,33 @@ export default function Home() {
         // it's saying you can trust this value
         // https://stackoverflow.com/questions/54496398/typescript-type-string-undefined-is-not-assignable-to-type-string
         activeEventsClone.push(foundItem!)
-        setActiveEvents(activeEventsClone)
+        setActiveEvents(orderEvents(activeEventsClone, sortActiveEventsAsc.isAsc))
         const filteredEvents = archivedEvents.filter(item => item.id !== id)
-        console.log(foundItem, filteredEvents)
-        setArchivedEvents(filteredEvents)
+        setArchivedEvents(orderEvents(filteredEvents, sortArchivedEventsAsc.isAsc))
       }
     } else {
       const foundItem = activeEventsClone.find(item => item.id === id)
       if (foundItem !== undefined) {
         foundItem.complete = !complete
         archivedEventsClone.push(foundItem!)
-        setArchivedEvents(archivedEventsClone)
+        setArchivedEvents(
+          orderEvents(archivedEventsClone, sortArchivedEventsAsc.isAsc)
+        )
         const filteredEvents = activeEvents.filter(item => item.id !== id)
-        console.log(foundItem, filteredEvents)
-        setActiveEvents(filteredEvents)
+        setActiveEvents(orderEvents(filteredEvents, sortActiveEventsAsc.isAsc))
       }
     }
-
-    // else, find id in active, move to  archived
   }
 
   async function doFetch() {
     const activeEvents = await fetchActiveEvents()
     const archivedEvents = await fetchArchivedEvents()
-    setActiveEvents(activeEvents)
-    setArchivedEvents(archivedEvents)
+
+    let events = orderEvents(activeEvents, sortActiveEventsAsc.isAsc)
+    setActiveEvents(events)
+
+    events = orderEvents(archivedEvents, sortArchivedEventsAsc.isAsc)
+    setArchivedEvents(events)
   }
 
   useEffect(() => {
@@ -97,12 +103,24 @@ export default function Home() {
         <h2>Active Events</h2>{' '}
         <span style={{cursor: 'pointer', paddingLeft: '5px'}}>
           <FaArrowUp
-            onClick={() => orderEvents(activeEvents, setActiveEvents, true)}
+            onClick={() => {
+              setSortActiveEventsAsc({
+                isAsc: true,
+              })
+              const events = orderEvents(activeEvents, true)
+              setActiveEvents(events)
+            }}
           />
         </span>
         <span style={{cursor: 'pointer', paddingLeft: '5px'}}>
           <FaArrowDown
-            onClick={() => orderEvents(activeEvents, setActiveEvents, false)}
+            onClick={() => {
+              setSortActiveEventsAsc({
+                isAsc: false,
+              })
+              const events = orderEvents(activeEvents, false)
+              setActiveEvents(events)
+            }}
           />
         </span>
       </div>
@@ -121,12 +139,24 @@ export default function Home() {
         <h2>Archived Events</h2>{' '}
         <span style={{cursor: 'pointer', paddingLeft: '5px'}}>
           <FaArrowUp
-            onClick={() => orderEvents(archivedEvents, setArchivedEvents, true)}
+            onClick={() => {
+              setSortArchivedEventsAsc({
+                isAsc: true,
+              })
+              const events = orderEvents(archivedEvents, true)
+              setArchivedEvents(events)
+            }}
           />
         </span>
         <span style={{cursor: 'pointer', paddingLeft: '5px'}}>
           <FaArrowDown
-            onClick={() => orderEvents(archivedEvents, setArchivedEvents, false)}
+            onClick={() => {
+              setSortArchivedEventsAsc({
+                isAsc: false,
+              })
+              const events = orderEvents(archivedEvents, false)
+              setArchivedEvents(events)
+            }}
           />
         </span>
       </div>
