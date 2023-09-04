@@ -26,7 +26,6 @@ const useData = () => {
       const payload = {
         data: {section_id, summary, complete, timestamp: date.getTime(), detail},
       }
-      console.log(payload)
 
       const postFormData = async () => {
         const origin = process.env.NEXT_PUBLIC_ORIGIN

@@ -7,10 +7,6 @@ import {useState, useEffect} from 'react'
 import {FaArrowUp, FaArrowDown} from 'react-icons/fa'
 import {linkStyle, ulStyle, headerStyle, h1Style, rowStyle} from '../../utils/styles'
 
-function deleteItem(id: number) {
-  console.log('deleteItem', id)
-}
-
 type IsAscProp = {
   isAsc: boolean
 }
@@ -28,8 +24,8 @@ type eventProp = {
 
 export default function Home() {
   const defaultEventsState: eventProp[] = []
-  const [activeEvents, setActiveEvents] = useState(defaultEventsState)
-  const [archivedEvents, setArchivedEvents] = useState(defaultEventsState)
+  const [activeEvents, setActiveEvents] = useState(defaultEventsState) // type: 0
+  const [archivedEvents, setArchivedEvents] = useState(defaultEventsState) // type: 1
   const {fetchActiveEvents, fetchArchivedEvents} = useFetch()
   const [sortActiveEventsAsc, setSortActiveEventsAsc] = useState<IsAscProp>({
     isAsc: true,
@@ -43,6 +39,16 @@ export default function Home() {
     if (asc === true) clone.sort((a, b) => a.timestamp - b.timestamp)
     else clone.sort((a, b) => b.timestamp - a.timestamp)
     return clone
+  }
+
+  function deleteEvent(id: number, type: number) {
+    if (type === 0) {
+      const filteredEvents = activeEvents.filter(item => item.id !== id)
+      setActiveEvents(filteredEvents)
+    } else {
+      const filteredEvents = archivedEvents.filter(item => item.id !== id)
+      setArchivedEvents(filteredEvents)
+    }
   }
 
   function moveToggledEvent(id: number, complete: boolean) {
@@ -130,7 +136,8 @@ export default function Home() {
           <EventItem
             key={event.id}
             {...event}
-            deleteItem={deleteItem}
+            type={0}
+            deleteEvent={deleteEvent}
             moveToggledEvent={moveToggledEvent}
           />
         ))}
@@ -165,7 +172,8 @@ export default function Home() {
           <EventItem
             key={event.id}
             {...event}
-            deleteItem={deleteItem}
+            deleteEvent={deleteEvent}
+            type={1}
             moveToggledEvent={moveToggledEvent}
           />
         ))}

@@ -2,7 +2,6 @@ import {sql} from '@vercel/postgres'
 import {NextResponse} from 'next/server'
 export async function PUT(request: Request) {
   try {
-    console.log('request.method', request.method)
     if (request.method !== 'PUT') {
       return NextResponse.json({message: 'Only PUT requests allowed'}, {status: 405})
     }

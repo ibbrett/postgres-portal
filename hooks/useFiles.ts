@@ -24,11 +24,7 @@ POSTGRES_DATABASE="verceldb"
 # config
 APP_TITLE="${title}"`
 
-    console.log(title)
-    //fs.writeFileSync('./example.json', JSON.stringify(req.body));
     fs.writeFileSync(fname, content)
-
-    //return res.status(200).json({});
   }
 
   return {writeToTest}

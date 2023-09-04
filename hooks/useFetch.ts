@@ -30,8 +30,6 @@ const useFetch = () => {
   }
 
   const fetchData = async (url: string) => {
-    console.log('fetchData')
-
     const result = await fetch(`${url}`)
       .then(response => response.json())
       .then(result => {

@@ -11,7 +11,6 @@ export async function GET(request: Request) {
       events =
         await sql`SELECT * FROM event WHERE complete=${complete} ORDER BY timestamp;`
     }
-    console.log('events', JSON.stringify(events))
     return NextResponse.json(events.rows, {status: 200})
     // return NextResponse.json({events: events.rows}, {status: 200})
   } catch (error) {
