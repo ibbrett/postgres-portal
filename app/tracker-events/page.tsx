@@ -6,6 +6,7 @@ import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
 import {linkStyle, ulStyle, headerStyle, h1Style, rowStyle} from '../../utils/styles'
 import {EventSortTrigger} from '@/components/events/EventSortTrigger'
+import {FaArrowLeft} from 'react-icons/fa'
 
 type IsAscProp = {
   isAsc: boolean
@@ -99,9 +100,14 @@ export default function Home() {
     <>
       <header className={headerStyle}>
         <h1 className={h1Style}>Events</h1>
-        <Link className={linkStyle} href="/tracker-events/new">
-          New Event
-        </Link>
+        <span className={rowStyle}>
+          <Link href=".." className={linkStyle}>
+            <FaArrowLeft />
+          </Link>
+          <Link className={linkStyle} href="/tracker-events/new">
+            New Event
+          </Link>
+        </span>
       </header>
       <div className={rowStyle}>
         <h2>Active Events</h2>{' '}

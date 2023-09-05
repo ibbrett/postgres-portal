@@ -1,8 +1,7 @@
-// import Image from 'next/image'
-// import styles from './page.module.css'
 import Link from 'next/link'
 import {linkStyle, headerStyle, h1Style} from '../utils/styles'
 import {FaCog, FaStickyNote} from 'react-icons/fa'
+import {rowStyle} from '../utils/styles'
 
 export default function Home() {
   return (
@@ -13,7 +12,7 @@ export default function Home() {
           [ <Link href="./sections">Sections</Link> |{' '}
           <Link href="./tracker-events">Tracker Events</Link> ]
         </span>
-        <span>
+        <span className={rowStyle}>
           <Link className={linkStyle} href="/notes">
             <FaStickyNote />
           </Link>
