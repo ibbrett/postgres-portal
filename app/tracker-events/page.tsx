@@ -4,7 +4,6 @@ import Link from 'next/link'
 import {EventItem} from '@/components/events/EventItem'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
-import {FaArrowUp, FaArrowDown} from 'react-icons/fa'
 import {linkStyle, ulStyle, headerStyle, h1Style, rowStyle} from '../../utils/styles'
 import {EventSortTrigger} from '@/components/events/EventSortTrigger'
 
