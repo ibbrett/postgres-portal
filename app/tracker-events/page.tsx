@@ -6,6 +6,7 @@ import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
 import {FaArrowUp, FaArrowDown} from 'react-icons/fa'
 import {linkStyle, ulStyle, headerStyle, h1Style, rowStyle} from '../../utils/styles'
+import {EventSortTrigger} from '@/components/events/EventSortTrigger'
 
 type IsAscProp = {
   isAsc: boolean
@@ -34,9 +35,9 @@ export default function Home() {
     isAsc: true,
   })
 
-  function orderEvents(events: eventProp[], asc: boolean) {
+  function orderEvents(events: eventProp[], sortAsc: {isAsc: boolean}) {
     const clone = [...events]
-    if (asc === true) clone.sort((a, b) => a.timestamp - b.timestamp)
+    if (sortAsc.isAsc === true) clone.sort((a, b) => a.timestamp - b.timestamp)
     else clone.sort((a, b) => b.timestamp - a.timestamp)
     return clone
   }
@@ -64,20 +65,18 @@ export default function Home() {
         // it's saying you can trust this value
         // https://stackoverflow.com/questions/54496398/typescript-type-string-undefined-is-not-assignable-to-type-string
         activeEventsClone.push(foundItem!)
-        setActiveEvents(orderEvents(activeEventsClone, sortActiveEventsAsc.isAsc))
+        setActiveEvents(orderEvents(activeEventsClone, sortActiveEventsAsc))
         const filteredEvents = archivedEvents.filter(item => item.id !== id)
-        setArchivedEvents(orderEvents(filteredEvents, sortArchivedEventsAsc.isAsc))
+        setArchivedEvents(orderEvents(filteredEvents, sortArchivedEventsAsc))
       }
     } else {
       const foundItem = activeEventsClone.find(item => item.id === id)
       if (foundItem !== undefined) {
         foundItem.complete = !complete
         archivedEventsClone.push(foundItem!)
-        setArchivedEvents(
-          orderEvents(archivedEventsClone, sortArchivedEventsAsc.isAsc)
-        )
+        setArchivedEvents(orderEvents(archivedEventsClone, sortArchivedEventsAsc))
         const filteredEvents = activeEvents.filter(item => item.id !== id)
-        setActiveEvents(orderEvents(filteredEvents, sortActiveEventsAsc.isAsc))
+        setActiveEvents(orderEvents(filteredEvents, sortActiveEventsAsc))
       }
     }
   }
@@ -86,10 +85,10 @@ export default function Home() {
     const activeEvents = await fetchActiveEvents()
     const archivedEvents = await fetchArchivedEvents()
 
-    let events = orderEvents(activeEvents, sortActiveEventsAsc.isAsc)
+    let events = orderEvents(activeEvents, sortActiveEventsAsc)
     setActiveEvents(events)
 
-    events = orderEvents(archivedEvents, sortArchivedEventsAsc.isAsc)
+    events = orderEvents(archivedEvents, sortArchivedEventsAsc)
     setArchivedEvents(events)
   }
 
@@ -107,28 +106,12 @@ export default function Home() {
       </header>
       <div className={rowStyle}>
         <h2>Active Events</h2>{' '}
-        <span style={{cursor: 'pointer', paddingLeft: '5px'}}>
-          <FaArrowUp
-            onClick={() => {
-              setSortActiveEventsAsc({
-                isAsc: true,
-              })
-              const events = orderEvents(activeEvents, true)
-              setActiveEvents(events)
-            }}
-          />
-        </span>
-        <span style={{cursor: 'pointer', paddingLeft: '5px'}}>
-          <FaArrowDown
-            onClick={() => {
-              setSortActiveEventsAsc({
-                isAsc: false,
-              })
-              const events = orderEvents(activeEvents, false)
-              setActiveEvents(events)
-            }}
-          />
-        </span>
+        <EventSortTrigger
+          setSortAsc={setSortActiveEventsAsc}
+          setEvents={setActiveEvents}
+          orderEvents={orderEvents}
+          events={activeEvents}
+        />
       </div>
       {/* <pre>{JSON.stringify(activeEvents)}</pre> */}
       <ul className={ulStyle}>
@@ -144,28 +127,12 @@ export default function Home() {
       </ul>
       <div className={rowStyle}>
         <h2>Archived Events</h2>{' '}
-        <span style={{cursor: 'pointer', paddingLeft: '5px'}}>
-          <FaArrowUp
-            onClick={() => {
-              setSortArchivedEventsAsc({
-                isAsc: true,
-              })
-              const events = orderEvents(archivedEvents, true)
-              setArchivedEvents(events)
-            }}
-          />
-        </span>
-        <span style={{cursor: 'pointer', paddingLeft: '5px'}}>
-          <FaArrowDown
-            onClick={() => {
-              setSortArchivedEventsAsc({
-                isAsc: false,
-              })
-              const events = orderEvents(archivedEvents, false)
-              setArchivedEvents(events)
-            }}
-          />
-        </span>
+        <EventSortTrigger
+          setSortAsc={setSortArchivedEventsAsc}
+          setEvents={setArchivedEvents}
+          orderEvents={orderEvents}
+          events={archivedEvents}
+        />
       </div>
       <ul className={ulStyle}>
         {archivedEvents.map(event => (
