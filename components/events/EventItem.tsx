@@ -1,14 +1,11 @@
 'use client'
 
 import {useUtils} from '@/hooks/useUtils'
-import {FaEdit} from 'react-icons/fa'
 import {ToggleEventComplete} from '@/components/events/ToggleEventComplete'
 import {DeleteEvent} from '@/components/events/DeleteEvent'
-import {itemContainerStyle, itemLabelStyle, itemDeleteStyle} from '@/utils/styles'
-
-function editEvent(id: number) {
-  console.log('editItem', id)
-}
+import {EditEvent} from '@/components/events/EditEvent'
+import {itemContainerStyle, itemLabelStyle} from '@/utils/styles'
+import {useState} from 'react'
 
 type EventItemProps = {
   id: number
@@ -32,25 +29,32 @@ export function EventItem({
   moveToggledEvent,
 }: EventItemProps) {
   const {normalizeDateTimeTitle} = useUtils()
+  const [classList, setClassList] = useState('by-date active')
+
+  const toggleItem = () => {
+    if (classList.includes('active')) {
+      setClassList('by-date')
+    } else {
+      setClassList('by-date active')
+    }
+  }
 
   return (
-    <li className={itemContainerStyle} key={id}>
-      <ToggleEventComplete
-        id={id}
-        complete={complete}
-        moveToggledEvent={moveToggledEvent}
-      />
-      <label htmlFor={id.toString()} className={itemLabelStyle}>
-        {normalizeDateTimeTitle(timestamp, summary)}
-      </label>
-
-      <DeleteEvent id={id} type={type} deleteEvent={deleteEvent} />
-
-      <span onClick={() => editEvent(id)} className={itemDeleteStyle}>
-        <FaEdit />
+    <li key={id} className={classList}>
+      <span className={`${itemContainerStyle}`}>
+        <ToggleEventComplete
+          id={id}
+          complete={complete}
+          moveToggledEvent={moveToggledEvent}
+        />
+        <DeleteEvent id={id} type={type} deleteEvent={deleteEvent} />
+        <EditEvent id={id} />
+        {/* removed from label to only allow checkbox to handle toggle - htmlFor={id.toString()} */}
+        <label onClick={toggleItem} className={`${itemLabelStyle} date`}>
+          {normalizeDateTimeTitle(timestamp, summary)}
+        </label>
       </span>
-
-      <pre>
+      <pre className={'eventDetail'}>
         {detail} {id}
       </pre>
     </li>

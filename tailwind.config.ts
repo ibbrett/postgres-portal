@@ -15,8 +15,8 @@ const config: Config = {
       },
       colors: {
         portal: {
-          dark: 'orange',
-          light: 'blue',
+          dark: 'white',
+          light: '#555',
         },
       },
     },

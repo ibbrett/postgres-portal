@@ -109,7 +109,7 @@ export default function Home() {
           </Link>
         </span>
       </header>
-      <div className={rowStyle}>
+      <div className={`${rowStyle} eventsSectionHeader`}>
         <h2>Active Events</h2>{' '}
         <EventSortTrigger
           setSortAsc={setSortActiveEventsAsc}
@@ -130,7 +130,7 @@ export default function Home() {
           />
         ))}
       </ul>
-      <div className={rowStyle}>
+      <div className={`${rowStyle} eventsSectionHeader`}>
         <h2>Archived Events</h2>{' '}
         <EventSortTrigger
           setSortAsc={setSortArchivedEventsAsc}

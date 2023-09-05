@@ -9,4 +9,40 @@
   pre {
     margin: 5px;
   }
+
+  pre.eventDetail {
+    padding: 8px;
+    margin-left: 56px;
+    font-size: 20px; /*0.9375em;*/
+    font-family: monospace;
+    background-color: #eee;
+    border-radius: 5px;
+
+  }
+
+  li.by-date.active {
+      height: 20px;
+  }
+
+  li.by-date {
+      height: auto;
+      overflow: hidden;
+      font-family: monospace;
+      overflow: hidden;
+      line-height: 20px;
+      font-size: 20px; /*0.9375em;*/
+  }
+
+  label.date {
+    white-space: pre
+  }
+
+  div.eventsSectionHeader {
+    margin-top: 20px;
+  }
+
+  .clickable {
+    cursor: pointer
+  }
+
 }

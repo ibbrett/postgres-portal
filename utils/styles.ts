@@ -11,8 +11,6 @@ const itemContainerStyle = 'flex gap-1 item-center my-2'
 const itemFieldStyle = 'cursor-pointer peer'
 const itemLabelStyle =
   'cursor-pointer peer-checked:line-through peer-checked:text-slate-500'
-const itemDeleteStyle =
-  'bg-gray-300 hover:bg-gray-400 text-red-700 font-bold px-1 ml-4 rounded inline-flex items-center'
 const ulStyle = 'pl-1'
 const rowStyle = 'flex justify-left'
 
@@ -27,7 +25,6 @@ export {
   itemContainerStyle,
   itemFieldStyle,
   itemLabelStyle,
-  itemDeleteStyle,
   ulStyle,
   rowStyle,
 }
