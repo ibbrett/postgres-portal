@@ -1,4 +1,5 @@
 import {FaEdit} from 'react-icons/fa'
+import Link from 'next/link'
 
 type EditProps = {
   id: number
@@ -10,8 +11,8 @@ function editEvent(id: number) {
 
 export function EditEvent({id}: EditProps) {
   return (
-    <span onClick={() => editEvent(id)} className={'clickable'}>
+    <Link href="/tracker-events/edit?id=${id}">
       <FaEdit />
-    </span>
+    </Link>
   )
 }
