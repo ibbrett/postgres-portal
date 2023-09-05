@@ -101,7 +101,7 @@ export default function Home() {
       <header className={headerStyle}>
         <h1 className={h1Style}>Events</h1>
         <Link className={linkStyle} href="/tracker-events/new">
-          New
+          New Event
         </Link>
       </header>
       <div className={rowStyle}>

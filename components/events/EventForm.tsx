@@ -28,7 +28,7 @@ export function EventForm({SaveNewEvent}: EventFormProps) {
             Cancel
           </Link>
           <button type="submit" className={linkStyle}>
-            Create
+            Save
           </button>
         </div>
       </form>
