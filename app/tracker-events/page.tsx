@@ -12,7 +12,7 @@ type IsAscProp = {
   isAsc: boolean
 }
 
-type eventProp = {
+type EventProp = {
   id: number
   section_id: number
   summary: string
@@ -24,7 +24,7 @@ type eventProp = {
 }
 
 export default function Home() {
-  const defaultEventsState: eventProp[] = []
+  const defaultEventsState: EventProp[] = []
   const [activeEvents, setActiveEvents] = useState(defaultEventsState) // type: 0
   const [archivedEvents, setArchivedEvents] = useState(defaultEventsState) // type: 1
   const {fetchActiveEvents, fetchArchivedEvents} = useFetch()
@@ -35,7 +35,7 @@ export default function Home() {
     isAsc: true,
   })
 
-  function orderEvents(events: eventProp[], sortAsc: {isAsc: boolean}) {
+  function orderEvents(events: EventProp[], sortAsc: {isAsc: boolean}) {
     const clone = [...events]
     if (sortAsc.isAsc === true) clone.sort((a, b) => a.timestamp - b.timestamp)
     else clone.sort((a, b) => b.timestamp - a.timestamp)

@@ -1,6 +1,6 @@
 import {itemFieldStyle} from '@/utils/styles'
 
-type toggleCheckProps = {
+type ToggleCheckProps = {
   id: number
   complete: boolean
   moveToggledEvent: (id: number, complete: boolean) => void
@@ -10,7 +10,7 @@ export function ToggleEventComplete({
   id,
   complete,
   moveToggledEvent,
-}: toggleCheckProps) {
+}: ToggleCheckProps) {
   async function toggleItem(id: number, complete: boolean) {
     const origin = process.env.NEXT_PUBLIC_ORIGIN
     const payload = {data: {id}}

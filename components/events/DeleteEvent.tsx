@@ -1,13 +1,13 @@
 import {itemDeleteStyle} from '@/utils/styles'
 import {FaTrash} from 'react-icons/fa'
 
-type deleteProps = {
+type DeleteProps = {
   id: number
   type: number
   deleteEvent: (id: number, type: number) => void
 }
 
-export function DeleteEvent({id, type, deleteEvent}: deleteProps) {
+export function DeleteEvent({id, type, deleteEvent}: DeleteProps) {
   async function deleteItem(id: number, type: number) {
     const origin = process.env.NEXT_PUBLIC_ORIGIN
     const url = `${origin}/api/delete-event?id=${id}`

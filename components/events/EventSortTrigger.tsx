@@ -4,7 +4,7 @@ type IsAscProp = {
   isAsc: boolean
 }
 
-type eventProp = {
+type EventProp = {
   id: number
   section_id: number
   summary: string
@@ -17,9 +17,9 @@ type eventProp = {
 
 type EventSortProps = {
   setSortAsc: ({}: IsAscProp) => void
-  setEvents: (events: eventProp[]) => void
-  orderEvents: (events: eventProp[], {}: IsAscProp) => eventProp[]
-  events: eventProp[]
+  setEvents: (events: EventProp[]) => void
+  orderEvents: (events: EventProp[], {}: IsAscProp) => EventProp[]
+  events: EventProp[]
 }
 
 export function EventSortTrigger({

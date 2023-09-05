@@ -2,10 +2,10 @@ import Link from 'next/link'
 import {DateTime} from '@/components/DateTime'
 import {formFieldStyle, linkStyle} from '@/utils/styles'
 
-type EVENT_FUNCTION = (data: FormData) => void
+type EventAction = (data: FormData) => void
 
 type EventFormProps = {
-  SaveNewEvent: EVENT_FUNCTION
+  SaveNewEvent: EventAction
 }
 
 export function EventForm({SaveNewEvent}: EventFormProps) {
