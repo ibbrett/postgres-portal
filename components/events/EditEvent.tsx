@@ -11,7 +11,7 @@ function editEvent(id: number) {
 
 export function EditEvent({id}: EditProps) {
   return (
-    <Link href="/tracker-events/edit?id=${id}">
+    <Link href={`/tracker-events/edit?id=${id}`}>
       <FaEdit />
     </Link>
   )

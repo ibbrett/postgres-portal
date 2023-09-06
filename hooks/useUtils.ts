@@ -37,7 +37,7 @@ const useUtils = () => {
       date.setTime(unixTimestamp)
 
       // build date string, add padding
-      const padMonth = false
+      const padMonth = true
       const padDay = true
 
       let month = MONTH[date.getMonth()]

@@ -8,17 +8,18 @@ import 'react-clock/dist/Clock.css'
 
 type DateTimeProps = {
   name: string
+  timestamp: number | null
 }
 type ValuePiece = Date | null
 type Value = ValuePiece | [ValuePiece, ValuePiece]
 
-// const DateTimeStyle = "text-slate-300 bg-transparent px-2 py-1 rounded focus-within:border-slate-100 outline-none";
 const DateTimeStyle =
   'border border-slate-300 text-slate-300 bg-transparent px-2 py-1 rounded focus-within:border-slate-100 outline-none'
 
-export function DateTime({name}: DateTimeProps) {
-  const [startDate, setStartDate] = useState<Value>(new Date())
-
+export function DateTime({name, timestamp}: DateTimeProps) {
+  let defaultDate = new Date()
+  if (timestamp !== null) defaultDate.setTime(timestamp)
+  const [startDate, setStartDate] = useState<Value>(defaultDate)
   return (
     <DateTimePicker
       className={DateTimeStyle}

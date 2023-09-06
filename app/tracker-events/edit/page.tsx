@@ -1,7 +1,13 @@
 import {EventForm} from '@/components/events/EventForm'
 import {useData} from '@/hooks/useData'
 
-export default function Page() {
+type Params = {
+  id: string
+}
+type ServerSideParams = {
+  searchParams: Params
+}
+export default function Page({searchParams}: ServerSideParams) {
   const {SaveEvent} = useData()
-  return <EventForm SaveNewEvent={SaveEvent} />
+  return <EventForm SaveEvent={SaveEvent} id={searchParams.id} />
 }

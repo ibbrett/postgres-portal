@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+
   body {
     padding: 20px;
   }
+  
   pre {
     margin: 5px;
   }
@@ -17,11 +19,10 @@
     font-family: monospace;
     background-color: #eee;
     border-radius: 5px;
-
   }
 
   li.by-date.active {
-      height: 20px;
+      height: 24px;
   }
 
   li.by-date {
