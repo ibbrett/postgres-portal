@@ -25,7 +25,32 @@ const useData = () => {
 
       const section_id = 2
 
-      const postFormData = async (payload: any) => {
+      type PostFormDataProps = {
+        section_id: number
+        summary: string
+        complete: boolean
+        timestamp: number
+        detail: string
+      }
+
+      type PutFormDataProps = {
+        id: string | {}
+        section_id: number
+        summary: string
+        complete: boolean
+        timestamp: number
+        detail: string
+      }
+
+      type FormDataPostPayload = {
+        data: PostFormDataProps
+      }
+
+      type FormDataPutPayload = {
+        data: PutFormDataProps
+      }
+
+      const postFormData = async (payload: FormDataPostPayload) => {
         const origin = process.env.NEXT_PUBLIC_ORIGIN
         const response = await fetch(`${origin}/api/create-event`, {
           method: 'POST',
@@ -36,9 +61,10 @@ const useData = () => {
         })
 
         const data = await response.json()
+        console.log('postFormData', data, payload)
       }
 
-      const putFormData = async (payload: any) => {
+      const putFormData = async (payload: FormDataPutPayload) => {
         const origin = process.env.NEXT_PUBLIC_ORIGIN
         const response = await fetch(`${origin}/api/update-event`, {
           method: 'PUT',
@@ -49,6 +75,7 @@ const useData = () => {
         })
 
         const data = await response.json()
+        console.log('putFormData', data, payload)
       }
 
       if (id === undefined) {
