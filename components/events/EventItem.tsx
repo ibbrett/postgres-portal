@@ -54,9 +54,7 @@ export function EventItem({
           {normalizeDateTimeTitle(timestamp, summary)}
         </label>
       </span>
-      <pre className={'eventDetail'}>
-        {detail} {id}
-      </pre>
+      <pre className={'eventDetail'}>{detail}</pre>
     </li>
   )
 }

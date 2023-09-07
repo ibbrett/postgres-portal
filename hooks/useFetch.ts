@@ -30,7 +30,7 @@ const useFetch = () => {
   }
 
   const fetchData = async (url: string) => {
-    const result = await fetch(`${url}`)
+    const result = await fetch(`${url}`, {cache: 'no-store'})
       .then(response => response.json())
       .then(result => {
         return result

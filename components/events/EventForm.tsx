@@ -11,7 +11,9 @@ type EventFormProps = {
 
 async function getItem(id: string) {
   const origin = process.env.NEXT_PUBLIC_ORIGIN
-  const response = await fetch(`${origin}/api/get-event?id=${id}`)
+  const response = await fetch(`${origin}/api/get-event?id=${id}`, {
+    cache: 'no-store',
+  })
   /*
   const response = await fetch(`${origin}/api/get-event?id=${id}`, {
     cache: 'no-store',
