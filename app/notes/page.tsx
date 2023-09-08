@@ -6,7 +6,7 @@ import {
   preStyle,
   headerStyle,
   h1Style,
-} from '../../utils/styles'
+} from '@/utils/styles'
 
 export default function Page() {
   return (

@@ -1,7 +1,10 @@
 const formFieldStyle =
   'border border-black text-black bg-white px-2 py-1 rounded focus-within:border-slate-100 outline-none'
 const linkStyle =
-  'border border-slate-800 text-slate-800 px-2 py-1 rounded hover:bg-yellow-700 hover:text-red-800 focus-within:bg-yellow-700 outline-none'
+  'border border-slate-800 text-slate-800 px-2 py-1 rounded hover:bg-gray-300 focus-within:bg-gray-300 outline-none align-items: center'
+const DateTimeStyle =
+  'border border-slate-800 text-slate-800 bg-transparent px-2 py-1 rounded focus-within:border-gray-300 outline-none'
+
 const iconSampleStyle = 'cursor-pointer'
 const preStyle = 'border border-slate-300 px-5 my-5'
 const headerStyle = 'flex justify-between mb-4 items-center'
@@ -27,4 +30,5 @@ export {
   itemLabelStyle,
   ulStyle,
   rowStyle,
+  DateTimeStyle,
 }

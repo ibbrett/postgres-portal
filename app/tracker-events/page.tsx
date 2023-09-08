@@ -4,12 +4,9 @@ import Link from 'next/link'
 import {EventItem} from '@/components/events/EventItem'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
-import {ulStyle, headerStyle, h1Style, rowStyle} from '../../utils/styles'
+import {linkStyle, ulStyle, headerStyle, h1Style, rowStyle} from '@/utils/styles'
 import {EventSortTrigger} from '@/components/events/EventSortTrigger'
 import {FaArrowLeft} from 'react-icons/fa'
-
-const linkStyle =
-  'border border-slate-800 text-slate-800 px-2 py-1 rounded hover:bg-gray-300 focus-within:bg-gray-300 outline-none align-items: center'
 
 type IsAscProp = {
   isAsc: boolean

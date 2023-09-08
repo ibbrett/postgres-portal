@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import {linkStyle, headerStyle, h1Style} from '../utils/styles'
+import {linkStyle, headerStyle, h1Style} from '@/utils/styles'
 import {FaCog, FaStickyNote} from 'react-icons/fa'
-import {rowStyle} from '../utils/styles'
+import {rowStyle} from '@/utils/styles'
 
 export default function Home() {
   return (
