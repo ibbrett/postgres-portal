@@ -4,9 +4,12 @@ import Link from 'next/link'
 import {EventItem} from '@/components/events/EventItem'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
-import {linkStyle, ulStyle, headerStyle, h1Style, rowStyle} from '../../utils/styles'
+import {ulStyle, headerStyle, h1Style, rowStyle} from '../../utils/styles'
 import {EventSortTrigger} from '@/components/events/EventSortTrigger'
 import {FaArrowLeft} from 'react-icons/fa'
+
+const linkStyle =
+  'border border-slate-800 text-slate-800 px-2 py-1 rounded hover:bg-gray-300 focus-within:bg-gray-300 outline-none align-items: center'
 
 type IsAscProp = {
   isAsc: boolean
@@ -101,7 +104,7 @@ export default function Home() {
       <header className={headerStyle}>
         <h1 className={h1Style}>Events</h1>
         <span className={rowStyle}>
-          <Link href=".." className={linkStyle}>
+          <Link href=".." className={linkStyle} style={{padding: '8px'}}>
             <FaArrowLeft />
           </Link>
           <Link className={linkStyle} href="/tracker-events/new">
