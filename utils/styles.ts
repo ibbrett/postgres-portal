@@ -28,6 +28,8 @@ const rowStyle = 'flex justify-left'
 const sectionHeader = `${rowStyle} mt-10`
 const dateString = `cursor-pointer  ${archived} whitespace-pre`
 
+const hr = 'my-10'
+
 export {
   form_field,
   linkStyle,
@@ -44,4 +46,5 @@ export {
   sectionHeader,
   dateString,
   eventDetail,
+  hr,
 }

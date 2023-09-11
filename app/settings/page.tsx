@@ -4,15 +4,14 @@ import Link from 'next/link'
 // import { DateTime } from "@/components/DateTime";
 import {useFiles} from '@/hooks/useFiles'
 import {FaArrowLeft} from 'react-icons/fa'
-import {linkStyle, form_field, headerStyle, h1Style} from '@/utils/styles'
+import {linkStyle, form_field, headerStyle, h1Style, hr} from '@/utils/styles'
 
 async function CreateEvent(data: FormData) {
   'use server'
 
   // const title = data.get("title")?.valueOf();
-  const {writeToTest} = useFiles()
-
-  writeToTest(data)
+  const {updateEnvFiles} = useFiles()
+  updateEnvFiles(data)
 
   /*
   const title = data.get("title")?.valueOf();
@@ -22,10 +21,12 @@ async function CreateEvent(data: FormData) {
 }
 
 export default function Page() {
+  const appTitle = process.env.NEXT_PUBLIC_APP_TITLE
+
   return (
     <>
       <header className={headerStyle}>
-        <h1 className={h1Style}>Setting</h1>
+        <h1 className={h1Style}>Settings</h1>
         <Link href=".." className={linkStyle}>
           <FaArrowLeft />
         </Link>
@@ -35,7 +36,7 @@ export default function Page() {
         <input
           type="text"
           name="title"
-          defaultValue={process.env.APP_TITLE}
+          defaultValue={appTitle}
           className={form_field}
         />
         <div className="flex gap-1 justify-end">
@@ -44,6 +45,15 @@ export default function Page() {
           </button>
         </div>
       </form>
+      <hr className={hr} />
+      <ul>
+        <li>
+          <Link href="./sections">Sections</Link>
+        </li>
+        <li>
+          <Link href="./db-tables">Database Tables</Link>
+        </li>
+      </ul>
     </>
   )
 }
