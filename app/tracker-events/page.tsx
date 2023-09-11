@@ -4,9 +4,17 @@ import Link from 'next/link'
 import {EventItem} from '@/components/events/EventItem'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
-import {linkStyle, ulStyle, headerStyle, h1Style, rowStyle} from '@/utils/styles'
+import {
+  linkStyle,
+  ulStyle,
+  headerStyle,
+  h1Style,
+  rowStyle,
+  sectionHeader,
+} from '@/utils/styles'
 import {EventSortTrigger} from '@/components/events/EventSortTrigger'
 import {FaArrowLeft} from 'react-icons/fa'
+import {Loading} from '@/components/controls/Loading'
 
 type IsAscProp = {
   isAsc: boolean
@@ -96,6 +104,8 @@ export default function Home() {
     doFetch()
   }, [])
 
+  // if (activeEvents.length === 0 && archivedEvents.length === 0) return 'Loading...'
+
   return (
     <>
       <header className={headerStyle}>
@@ -109,47 +119,58 @@ export default function Home() {
           </Link>
         </span>
       </header>
-      <div className={`${rowStyle} eventsSectionHeader`}>
-        <h2>Active Events</h2>{' '}
-        <EventSortTrigger
-          setSortAsc={setSortActiveEventsAsc}
-          setEvents={setActiveEvents}
-          orderEvents={orderEvents}
-          events={activeEvents}
+
+      {activeEvents.length === 0 && archivedEvents.length === 0 ? (
+        <Loading
+          msg="Fetching Events ..."
+          margin="100px"
+          spinnerColor="fill-blue-600"
         />
-      </div>
-      {/* <pre>{JSON.stringify(activeEvents)}</pre> */}
-      <ul className={ulStyle}>
-        {activeEvents.map(event => (
-          <EventItem
-            key={event.id}
-            {...event}
-            type={0}
-            deleteEvent={deleteEvent}
-            moveToggledEvent={moveToggledEvent}
-          />
-        ))}
-      </ul>
-      <div className={`${rowStyle} eventsSectionHeader`}>
-        <h2>Archived Events</h2>{' '}
-        <EventSortTrigger
-          setSortAsc={setSortArchivedEventsAsc}
-          setEvents={setArchivedEvents}
-          orderEvents={orderEvents}
-          events={archivedEvents}
-        />
-      </div>
-      <ul className={ulStyle}>
-        {archivedEvents.map(event => (
-          <EventItem
-            key={event.id}
-            {...event}
-            deleteEvent={deleteEvent}
-            type={1}
-            moveToggledEvent={moveToggledEvent}
-          />
-        ))}
-      </ul>
+      ) : (
+        <>
+          <div className={sectionHeader}>
+            <h2>Active</h2>{' '}
+            <EventSortTrigger
+              setSortAsc={setSortActiveEventsAsc}
+              setEvents={setActiveEvents}
+              orderEvents={orderEvents}
+              events={activeEvents}
+            />
+          </div>
+
+          <ul className={ulStyle}>
+            {activeEvents.map(event => (
+              <EventItem
+                key={event.id}
+                {...event}
+                type={0}
+                deleteEvent={deleteEvent}
+                moveToggledEvent={moveToggledEvent}
+              />
+            ))}
+          </ul>
+          <div className={sectionHeader}>
+            <h2>Archived</h2>{' '}
+            <EventSortTrigger
+              setSortAsc={setSortArchivedEventsAsc}
+              setEvents={setArchivedEvents}
+              orderEvents={orderEvents}
+              events={archivedEvents}
+            />
+          </div>
+          <ul className={ulStyle}>
+            {archivedEvents.map(event => (
+              <EventItem
+                key={event.id}
+                {...event}
+                deleteEvent={deleteEvent}
+                type={1}
+                moveToggledEvent={moveToggledEvent}
+              />
+            ))}
+          </ul>
+        </>
+      )}
     </>
   )
 }

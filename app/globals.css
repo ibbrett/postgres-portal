@@ -3,22 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-
-  body {
-    padding: 20px;
-  }
   
   pre {
     margin: 5px;
-  }
-
-  pre.eventDetail {
-    padding: 8px;
-    margin-left: 56px;
-    font-size: 16px; /*0.9375em;*/
-    font-family: monospace;
-    background-color: #eee;
-    border-radius: 5px;
   }
 
   li.by-date.active {
@@ -32,18 +19,6 @@
       overflow: hidden;
       line-height: 16px;
       font-size: 16px; /*0.9375em;*/
-  }
-
-  label.date {
-    white-space: pre
-  }
-
-  div.eventsSectionHeader {
-    margin-top: 20px;
-  }
-
-  .clickable {
-    cursor: pointer
   }
 
 }

@@ -4,7 +4,7 @@ import Link from 'next/link'
 // import { DateTime } from "@/components/DateTime";
 import {useFiles} from '@/hooks/useFiles'
 import {FaArrowLeft} from 'react-icons/fa'
-import {linkStyle, formFieldStyle, headerStyle, h1Style} from '@/utils/styles'
+import {linkStyle, form_field, headerStyle, h1Style} from '@/utils/styles'
 
 async function CreateEvent(data: FormData) {
   'use server'
@@ -36,7 +36,7 @@ export default function Page() {
           type="text"
           name="title"
           defaultValue={process.env.APP_TITLE}
-          className={formFieldStyle}
+          className={form_field}
         />
         <div className="flex gap-1 justify-end">
           <button type="submit" className={linkStyle}>

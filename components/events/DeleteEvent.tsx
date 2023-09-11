@@ -1,4 +1,5 @@
 import {FaTrash} from 'react-icons/fa'
+import {clickable} from '@/utils/styles'
 
 type DeleteProps = {
   id: number
@@ -24,7 +25,7 @@ export function DeleteEvent({id, type, deleteEvent}: DeleteProps) {
           deleteItem(id, type)
         }
       }}
-      className={'clickable'}
+      className={clickable}
     >
       <FaTrash />
     </span>

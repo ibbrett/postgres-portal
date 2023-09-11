@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import {DateTime} from '@/components/DateTime'
-import {formFieldStyle, linkStyle} from '@/utils/styles'
+import {form_field, linkStyle} from '@/utils/styles'
 
 type EventAction = (data: FormData) => void
 
@@ -45,18 +45,30 @@ export async function EventForm({SaveEvent, id}: EventFormProps) {
         <h1 className="text-2xl">New Event {id}</h1>
       </header>
       <form action={SaveEvent} className="flex gap-2 flex-col">
-        <span>Summary ( Title )</span>{' '}
+        <span>Summary</span>{' '}
         <input
           type="text"
           name="summary"
           defaultValue={summary}
-          className={formFieldStyle}
+          className={form_field}
+          placeholder="Add event title here..."
         />
         <span>Detail</span>{' '}
-        <textarea name="detail" defaultValue={detail} className={formFieldStyle} />
+        <textarea
+          name="detail"
+          rows={4}
+          defaultValue={detail}
+          className={form_field}
+          placeholder="Add event details here..."
+        />
         <span>
           Completed{' '}
-          <input type="checkbox" defaultChecked={complete} name="complete" />
+          <input
+            type="checkbox"
+            defaultChecked={complete}
+            className={form_field}
+            name="complete"
+          />
         </span>
         <span>Date / Time</span>
         <DateTime name="timestamp" timestamp={timestamp} />
