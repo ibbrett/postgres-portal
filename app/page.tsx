@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import {linkStyle, headerStyle, h1Style} from '@/utils/styles'
 import {FaCog, FaStickyNote} from 'react-icons/fa'
-import {rowStyle} from '@/utils/styles'
+import {rowStyle, hr} from '@/utils/styles'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
 
@@ -26,26 +26,18 @@ const tuyo = {
   ],
 }
 
-const tunes = [
-  {
-    artist: 'Ricardo Amarante',
-    tune: 'Toyu',
-    link: 'https://youtu.be/GJm7H9IP5SU?si=P23z1JhIDUsCqMbo',
-  },
-  {
-    artist: 'Buena Vista Social Club',
-    tune: '',
-    link: 'https://youtu.be/V0FoYUcq9FQ?si=QsucBDz_WkPQNWY2',
-  },
-  {
-    artist: 'Buena Vista Social Club',
-    tune: 'El Cuarto de Tula',
-    link: 'https://youtu.be/rtGSLV2sNKE?si=1cyKb50Erd0kYupA',
-  },
-]
+type SectionItemProps = {
+  created_at: string
+  id: number
+  name: string
+  type: string
+  updated_at: string
+}
+
+const defaultResults: SectionItemProps[] = []
 
 export default function Home() {
-  const [results, setResults] = useState({})
+  const [results, setResults] = useState(defaultResults)
   const {fetchSessions} = useFetch()
   const appTitle = process.env.NEXT_PUBLIC_APP_TITLE
 
@@ -54,20 +46,40 @@ export default function Home() {
       let fetchResults
       fetchResults = await fetchSessions()
       console.log('sessions', fetchResults)
-      setResults(fetchResults)
+      setResults(fetchResults.sections)
     }
     doFetch()
   }, [])
 
+  if (results.length === 0) return null
+
   return (
     <>
       <header className={headerStyle}>
-        {/*<h1 className={h1Style}>{process.env.APP_TITLE}</h1>*/}
         <h1 className={h1Style}>{appTitle}</h1>
-
         <span>
-          [ <Link href="./log">Activity Log</Link> |{' '}
-          <Link href="./tracker-events">Tracker Events</Link> ]
+          [{' '}
+          {results.map((item, index) =>
+            index > 0 ? (
+              <>
+                {' | '}
+                <Link
+                  key={index}
+                  href={{pathname: './' + item.type, query: {section_id: item.id}}}
+                >
+                  {item.name}
+                </Link>
+              </>
+            ) : (
+              <Link
+                key={index}
+                href={{pathname: './' + item.type, query: {section_id: item.id}}}
+              >
+                {item.name}
+              </Link>
+            )
+          )}{' '}
+          ]
         </span>
         <span className={rowStyle}>
           <Link className={linkStyle} href="/notes">
@@ -78,6 +90,7 @@ export default function Home() {
           </Link>
         </span>
       </header>
+      <hr className={hr} />
       <h1 className={h1Style}>Tuyo</h1>
       <ul>
         {tuyo.lyrics.map((line, i) => (

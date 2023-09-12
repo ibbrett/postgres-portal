@@ -15,6 +15,7 @@ import {
 import {EventSortTrigger} from '@/components/events/EventSortTrigger'
 import {FaArrowLeft} from 'react-icons/fa'
 import {Loading} from '@/components/controls/Loading'
+import {useSearchParams} from 'next/navigation'
 
 type IsAscProp = {
   isAsc: boolean
@@ -32,6 +33,11 @@ type EventProp = {
 }
 
 export default function Home() {
+  // client-side query params
+  const searchParams = useSearchParams()
+  const sectionId = searchParams.get('section_id')
+  console.log('sectionId', sectionId)
+
   const defaultEventsState: EventProp[] = []
   const [activeEvents, setActiveEvents] = useState(defaultEventsState) // type: 0
   const [archivedEvents, setArchivedEvents] = useState(defaultEventsState) // type: 1
@@ -98,6 +104,7 @@ export default function Home() {
 
     events = orderEvents(archivedEvents, sortArchivedEventsAsc)
     setArchivedEvents(events)
+    console.log('HOW WE ARE')
   }
 
   useEffect(() => {
