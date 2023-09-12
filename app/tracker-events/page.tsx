@@ -104,7 +104,6 @@ export default function Home() {
 
     events = orderEvents(archivedEvents, sortArchivedEventsAsc)
     setArchivedEvents(events)
-    console.log('HOW WE ARE')
   }
 
   useEffect(() => {
