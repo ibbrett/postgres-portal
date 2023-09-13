@@ -14,7 +14,7 @@ const DateTimeStyle = `${text} ${border} ${padding} ${inactive} ${focus} ${activ
 const eventDetail = `${inactive} p-2 ml-14 font-mono ${text} ${border}`
 
 const clickable = 'cursor-pointer'
-const archived = 'peer-checked:text-slate-500 peer-checked:line-through'
+const archived = 'peer-checked:text-slate-500' // peer-checked:line-through
 
 const iconSampleStyle = 'cursor-pointer'
 const preStyle = `${border} px-5 my-5`

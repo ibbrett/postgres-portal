@@ -11,6 +11,7 @@ import {
   h1Style,
   rowStyle,
   sectionHeader,
+  hr,
 } from '@/utils/styles'
 import {EventSortTrigger} from '@/components/events/EventSortTrigger'
 import {FaArrowLeft} from 'react-icons/fa'
@@ -24,7 +25,7 @@ type IsAscProp = {
 
 type EventProp = {
   id: number
-  section_id: number
+  section_id: string
   summary: string
   detail: string
   timestamp: number
@@ -38,6 +39,8 @@ export default function Home() {
   const searchParams = useSearchParams()
   const section_id = searchParams.get('section_id')
 
+  const {fetchActiveEvents, fetchArchivedEvents, fetchSection} = useFetch()
+
   console.log('Event page section_id', section_id, typeof section_id)
 
   if (typeof section_id !== 'string' || !section_id.length) {
@@ -47,7 +50,9 @@ export default function Home() {
   const defaultEventsState: EventProp[] = []
   const [activeEvents, setActiveEvents] = useState(defaultEventsState) // type: 0
   const [archivedEvents, setArchivedEvents] = useState(defaultEventsState) // type: 1
-  const {fetchActiveEvents, fetchArchivedEvents} = useFetch()
+  const [sectionName, setSectionName] = useState('Event')
+  const [eventsFetched, setEventsFetched] = useState(false)
+
   const [sortActiveEventsAsc, setSortActiveEventsAsc] = useState<IsAscProp>({
     isAsc: true,
   })
@@ -104,14 +109,19 @@ export default function Home() {
   }
 
   async function doFetch() {
-    const activeEvents = await fetchActiveEvents()
-    const archivedEvents = await fetchArchivedEvents()
+    const eventSection = await fetchSection(section_id)
+    setSectionName(eventSection.section.name)
+
+    const activeEvents = await fetchActiveEvents(section_id)
+    const archivedEvents = await fetchArchivedEvents(section_id)
 
     let events = orderEvents(activeEvents, sortActiveEventsAsc)
     setActiveEvents(events)
 
     events = orderEvents(archivedEvents, sortArchivedEventsAsc)
     setArchivedEvents(events)
+
+    setEventsFetched(true)
   }
 
   useEffect(() => {
@@ -123,7 +133,7 @@ export default function Home() {
   return (
     <>
       <header className={headerStyle}>
-        <h1 className={h1Style}>Events</h1>
+        <h1 className={h1Style}>{sectionName} events</h1>
         <span className={rowStyle}>
           <Link href=".." className={linkStyle} style={{padding: '8px'}}>
             <FaArrowLeft />
@@ -139,8 +149,9 @@ export default function Home() {
           </Link>
         </span>
       </header>
+      <hr className={hr} />
 
-      {activeEvents.length === 0 && archivedEvents.length === 0 ? (
+      {!eventsFetched && activeEvents.length === 0 && archivedEvents.length === 0 ? (
         <Loading
           msg="Fetching Events ..."
           margin="100px"

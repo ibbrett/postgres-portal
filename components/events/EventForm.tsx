@@ -32,6 +32,7 @@ export async function EventForm({SaveEvent, id, section_id}: EventFormProps) {
   let detail = ''
   let complete = false
   let timestamp = null
+  let pageTitle = 'New Event'
 
   if (id) {
     const events = await getItem(id)
@@ -42,12 +43,13 @@ export async function EventForm({SaveEvent, id, section_id}: EventFormProps) {
     complete = event.complete
     timestamp = event.timestamp
     section_id = event.section_id
+    pageTitle = 'Edit Event'
   }
 
   return (
     <>
       <header className="flex justify-between mb-4 items-center">
-        <h1 className="text-2xl">New Event {id}</h1>
+        <h1 className="text-2xl">{pageTitle}</h1>
       </header>
       <form action={SaveEvent} className="flex gap-2 flex-col">
         <span>Summary</span>{' '}

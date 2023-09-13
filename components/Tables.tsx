@@ -9,13 +9,13 @@ type TableProps = {
 
 export function Tables({table}: TableProps) {
   const [results, setResults] = useState({})
-  const {fetchSessions, fetchLogs, fetchEvents} = useFetch()
+  const {fetchSections, fetchLogs, fetchEvents} = useFetch()
 
   useEffect(() => {
     async function doFetch() {
       let fetchResults
       if (table === 'section') {
-        fetchResults = await fetchSessions()
+        fetchResults = await fetchSections()
       } else if (table === 'log') {
         fetchResults = await fetchLogs()
       } else if (table === 'event') {

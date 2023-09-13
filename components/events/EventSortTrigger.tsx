@@ -6,7 +6,7 @@ type IsAscProp = {
 
 type EventProp = {
   id: number
-  section_id: number
+  section_id: string
   summary: string
   detail: string
   timestamp: number

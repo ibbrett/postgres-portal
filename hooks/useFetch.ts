@@ -1,32 +1,34 @@
-//const useFetch = (origin: string | undefined) => {
 const useFetch = () => {
-  //const protocol = 'http'
-  //const host = 'localhost'
-  //const port = '3000'
-  //const origin = process.env.APP_ORIGIN
   const api = 'api'
-  //const apiPath = `${protocol}://${host}:${port}/${api}`
   const origin = process.env.NEXT_PUBLIC_ORIGIN
   const apiPath = `${origin}/${api}`
 
-  const fetchSessions = async () => {
+  const fetchSections = async () => {
     return fetchData(`${apiPath}/get-sections`)
+  }
+
+  const fetchSection = async (section_id: string | null) => {
+    return fetchData(`${apiPath}/get-section?section_id=${section_id}`)
   }
 
   const fetchLogs = async () => {
     return fetchData(`${apiPath}/get-logs`)
   }
 
-  const fetchEvents = async () => {
-    return fetchData(`${apiPath}/get-events`)
+  const fetchEvents = async (section_id: string | null) => {
+    if (section_id && section_id.length) {
+      return fetchData(`${apiPath}/get-events?section_id=${section_id}`)
+    } else {
+      return fetchData(`${apiPath}/get-events`)
+    }
   }
 
-  const fetchActiveEvents = async () => {
-    return fetchData(`${apiPath}/get-events?complete=0`)
+  const fetchActiveEvents = async (section_id: string | null) => {
+    return fetchData(`${apiPath}/get-events?section_id=${section_id}&complete=0`)
   }
 
-  const fetchArchivedEvents = async () => {
-    return fetchData(`${apiPath}/get-events?complete=1`)
+  const fetchArchivedEvents = async (section_id: string | null) => {
+    return fetchData(`${apiPath}/get-events?section_id=${section_id}&complete=1`)
   }
 
   const fetchData = async (url: string) => {
@@ -44,7 +46,8 @@ const useFetch = () => {
   }
 
   return {
-    fetchSessions,
+    fetchSection,
+    fetchSections,
     fetchLogs,
     fetchEvents,
     fetchActiveEvents,

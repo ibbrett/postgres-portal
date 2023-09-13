@@ -6,7 +6,7 @@ type EditProps = {
 }
 
 export function EditEvent({id}: EditProps) {
-  console.log('id, section_id', id)
+  // console.log('id, section_id', id)
   return (
     <Link
       href={{
