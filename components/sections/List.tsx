@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import {headerStyle, h1Style, linkStyle} from '@/utils/styles'
-import {FaArrowLeft} from 'react-icons/fa'
+import {FaPlus} from 'react-icons/fa'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
 import {Loading} from '@/components/controls/Loading'
@@ -35,7 +35,7 @@ export function List() {
       <header className={headerStyle}>
         <h1 className={h1Style}>Section List</h1>
         <Link href=".." className={linkStyle}>
-          <FaArrowLeft />
+          <FaPlus />
         </Link>
       </header>
 

@@ -36,7 +36,50 @@ $ npx create-next-app@latest
 ## Create GitHub repository
 
 ```bash
-git remote add origin git@github.com:ibbrett/postgres-portal.git
-git branch -M master
-git push -u origin master
+$ git remote add origin git@github.com:ibbrett/postgres-portal.git
+$ git branch -M master
+$ git push -u origin master
+```
+
+## Add GitHub repository to Vercel
+
+- navigate to [https://vercel.com/new](https://vercel.com/new) to add repo
+- click "Import" for postgres-portal repo
+- click "Deploy"
+- navigate to Vercel dashboard to see repo
+
+## Add PostgreSQL
+
+```bash
+$ npm i @vercel/postgres
+```
+
+- navigate to [Vercel deployments](https://vercel.com/ibbrett/postgres-portal/deployments)
+- click "Storage"
+- click "Create" for new psql database
+- select region: I chose Portland (keep in mind if app is run in different region you may experience latency)
+- configure postgres portal: I selected all three environments: Production, Preview, Development
+- copy .env values: I copied these values to a file (.env.development.local) I created
+- start creating schema
+
+## Run app locally
+
+```bash
+$ nvm use 20.0.0
+$ npm run dev
+```
+
+## Additional
+
+- added prettier
+
+```bash
+$ npm i --save-dev prettier
+```
+
+- added datetime picker and icons
+
+```bash
+npm i react-datetime-picker --save
+npm i react-icons --save
 ```
