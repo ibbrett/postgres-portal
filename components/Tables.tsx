@@ -19,7 +19,7 @@ export function Tables({table}: TableProps) {
       } else if (table === 'log') {
         fetchResults = await fetchLogs()
       } else if (table === 'event') {
-        fetchResults = await fetchEvents()
+        fetchResults = await fetchEvents(null)
       }
 
       setResults(fetchResults)
