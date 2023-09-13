@@ -2,9 +2,11 @@ import {redirect} from 'next/navigation'
 const useData = () => {
   async function SaveEvent(data: FormData) {
     'use server'
-    try {
-      const id = data.get('id')?.valueOf()
 
+    const id = data.get('id')?.valueOf()
+    const section_id = data.get('section_id')?.valueOf()
+
+    try {
       const summary = data.get('summary')?.valueOf()
       if (typeof summary !== 'string' || summary.length === 0) {
         throw new Error('Invalid Summary')
@@ -23,10 +25,8 @@ const useData = () => {
 
       const complete = data.get('complete') === null ? false : true
 
-      const section_id = 2
-
       type PostFormDataProps = {
-        section_id: number
+        section_id: string | {} | undefined
         summary: string
         complete: boolean
         timestamp: number
@@ -35,7 +35,7 @@ const useData = () => {
 
       type PutFormDataProps = {
         id: string | {}
-        section_id: number
+        section_id: string | {} | undefined
         summary: string
         complete: boolean
         timestamp: number
@@ -98,7 +98,7 @@ const useData = () => {
       console.log('unable to SaveEvent', e)
     }
 
-    redirect('/tracker-events')
+    redirect('/sections/event?section_id=' + section_id)
   }
 
   return {SaveEvent}

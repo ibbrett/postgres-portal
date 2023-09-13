@@ -16,6 +16,7 @@ import {EventSortTrigger} from '@/components/events/EventSortTrigger'
 import {FaArrowLeft} from 'react-icons/fa'
 import {Loading} from '@/components/controls/Loading'
 import {useSearchParams} from 'next/navigation'
+import {redirect} from 'next/navigation'
 
 type IsAscProp = {
   isAsc: boolean
@@ -35,8 +36,13 @@ type EventProp = {
 export default function Home() {
   // client-side query params
   const searchParams = useSearchParams()
-  const sectionId = searchParams.get('section_id')
-  console.log('sectionId', sectionId)
+  const section_id = searchParams.get('section_id')
+
+  console.log('Event page section_id', section_id, typeof section_id)
+
+  if (typeof section_id !== 'string' || !section_id.length) {
+    redirect('/' + section_id)
+  }
 
   const defaultEventsState: EventProp[] = []
   const [activeEvents, setActiveEvents] = useState(defaultEventsState) // type: 0
@@ -50,6 +56,7 @@ export default function Home() {
   })
 
   function orderEvents(events: EventProp[], sortAsc: {isAsc: boolean}) {
+    if (!events.length) return []
     const clone = [...events]
     if (sortAsc.isAsc === true) clone.sort((a, b) => a.timestamp - b.timestamp)
     else clone.sort((a, b) => b.timestamp - a.timestamp)
@@ -69,6 +76,7 @@ export default function Home() {
   function moveToggledEvent(id: number, complete: boolean) {
     const activeEventsClone = [...activeEvents]
     const archivedEventsClone = [...archivedEvents]
+    let orderedEvents
 
     // if false, find id in archived, move to active
     if (complete === true) {
@@ -120,7 +128,13 @@ export default function Home() {
           <Link href=".." className={linkStyle} style={{padding: '8px'}}>
             <FaArrowLeft />
           </Link>
-          <Link className={linkStyle} href="/tracker-events/new">
+          <Link
+            className={linkStyle}
+            href={{
+              pathname: '/sections/event/new',
+              query: {section_id: section_id},
+            }}
+          >
             New Event
           </Link>
         </span>

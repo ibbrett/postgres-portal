@@ -61,19 +61,24 @@ export default function Home() {
           [{' '}
           {results.map((item, index) =>
             index > 0 ? (
-              <>
+              <span key={item.name}>
                 {' | '}
                 <Link
-                  key={index}
-                  href={{pathname: './' + item.type, query: {section_id: item.id}}}
+                  href={{
+                    pathname: '/sections/' + item.type,
+                    query: {section_id: item.id},
+                  }}
                 >
                   {item.name}
                 </Link>
-              </>
+              </span>
             ) : (
               <Link
-                key={index}
-                href={{pathname: './' + item.type, query: {section_id: item.id}}}
+                key={item.name}
+                href={{
+                  pathname: '/sections/' + item.type,
+                  query: {section_id: item.id},
+                }}
               >
                 {item.name}
               </Link>
@@ -93,8 +98,8 @@ export default function Home() {
       <hr className={hr} />
       <h1 className={h1Style}>Tuyo</h1>
       <ul>
-        {tuyo.lyrics.map((line, i) => (
-          <li key={i} title={line[1]}>
+        {tuyo.lyrics.map(line => (
+          <li key={line[0]} title={line[1]}>
             {line[0]}
           </li>
         ))}

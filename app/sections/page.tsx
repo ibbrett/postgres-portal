@@ -3,6 +3,7 @@ import {Tables} from '@/components/Tables'
 import {headerStyle, h1Style, linkStyle} from '@/utils/styles'
 import {FaArrowLeft} from 'react-icons/fa'
 
+// hard-coded garbage
 const sections = ['Job Search Log', 'Tracker Events']
 export default function Page() {
   return (

@@ -7,7 +7,9 @@ type EventAction = (data: FormData) => void
 type EventFormProps = {
   SaveEvent: EventAction
   id: string | null
+  section_id: string | number | readonly string[] | undefined
 }
+// searchParams: {[section_id: string]: string | string[] | undefined}
 
 async function getItem(id: string) {
   const origin = process.env.NEXT_PUBLIC_ORIGIN
@@ -23,7 +25,9 @@ async function getItem(id: string) {
   return data
 }
 
-export async function EventForm({SaveEvent, id}: EventFormProps) {
+export async function EventForm({SaveEvent, id, section_id}: EventFormProps) {
+  console.log('EventForm: section_id', section_id)
+
   let summary = ''
   let detail = ''
   let complete = false
@@ -37,6 +41,7 @@ export async function EventForm({SaveEvent, id}: EventFormProps) {
     detail = event.detail
     complete = event.complete
     timestamp = event.timestamp
+    section_id = event.section_id
   }
 
   return (
@@ -73,7 +78,10 @@ export async function EventForm({SaveEvent, id}: EventFormProps) {
         <span>Date / Time</span>
         <DateTime name="timestamp" timestamp={timestamp} />
         <div className="flex gap-1 justify-end">
-          <Link href="/tracker-events" className={linkStyle}>
+          <Link
+            href={{pathname: '/sections/event', query: {section_id: section_id}}}
+            className={linkStyle}
+          >
             Cancel
           </Link>
           <button type="submit" className={linkStyle}>
@@ -81,6 +89,7 @@ export async function EventForm({SaveEvent, id}: EventFormProps) {
           </button>
         </div>
         {id && <input type="hidden" name="id" value={id} />}
+        <input type="hidden" name="section_id" value={section_id} />
       </form>
     </>
   )

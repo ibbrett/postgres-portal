@@ -3,16 +3,18 @@ import Link from 'next/link'
 
 type EditProps = {
   id: number
+  section_id: number
 }
 
-export function EditEvent({id}: EditProps) {
-  console.log('id, section_id', id)
+export function EditEvent({id, section_id}: EditProps) {
+  console.log('id, section_id', id, section_id)
   return (
     <Link
       href={{
         pathname: '/sections/event/edit',
         query: {
           id: id,
+          section_id: section_id,
         },
       }}
     >

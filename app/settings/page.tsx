@@ -48,10 +48,10 @@ export default function Page() {
       <hr className={hr} />
       <ul>
         <li>
-          <Link href="./sections">Sections</Link>
+          <Link href="/sections">Sections</Link>
         </li>
         <li>
-          <Link href="./db-tables">Database Tables</Link>
+          <Link href="/db-tables">Database Tables</Link>
         </li>
       </ul>
     </>
