@@ -13,13 +13,26 @@ import {
 import {FaArrowLeft} from 'react-icons/fa'
 import {Loading} from '@/components/controls/Loading'
 import {useState, useEffect} from 'react'
+import {useSearchParams} from 'next/navigation'
+import {useFetch} from '@/hooks/useFetch'
 
 export default function Log() {
-  const sectionName = 'Under Construction'
-  const section_id = 1
+  // get section_id param using client-side query params method
+  const searchParams = useSearchParams()
+  const section_id = searchParams.get('section_id')
+
+  // section state
+  const {fetchSection} = useFetch()
+  const [sectionName, setSectionName] = useState('Under Construction')
+
+  // set state for logs fetched - used by loading/spinner indicator
   const [logsFetched, setLogsFetched] = useState(false)
 
   async function doFetch() {
+    // get section info
+    const eventSection = await fetchSection(section_id)
+    setSectionName(eventSection.section.name)
+
     setLogsFetched(true)
   }
 

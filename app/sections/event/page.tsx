@@ -35,7 +35,7 @@ type EventProp = {
 }
 
 export default function Home() {
-  // client-side query params
+  // get section_id param using client-side query params method
   const searchParams = useSearchParams()
   const section_id = searchParams.get('section_id')
   const {fetchActiveEvents, fetchArchivedEvents, fetchSection} = useFetch()
