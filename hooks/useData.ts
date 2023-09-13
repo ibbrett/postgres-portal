@@ -61,7 +61,6 @@ const useData = () => {
         })
 
         const data = await response.json()
-        console.log('postFormData', data, payload)
       }
 
       const putFormData = async (payload: FormDataPutPayload) => {
@@ -75,7 +74,6 @@ const useData = () => {
         })
 
         const data = await response.json()
-        console.log('putFormData', data, payload)
       }
 
       if (id === undefined) {

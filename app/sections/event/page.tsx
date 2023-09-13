@@ -38,10 +38,7 @@ export default function Home() {
   // client-side query params
   const searchParams = useSearchParams()
   const section_id = searchParams.get('section_id')
-
   const {fetchActiveEvents, fetchArchivedEvents, fetchSection} = useFetch()
-
-  console.log('Event page section_id', section_id, typeof section_id)
 
   if (typeof section_id !== 'string' || !section_id.length) {
     redirect('/' + section_id)

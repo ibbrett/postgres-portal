@@ -9,25 +9,17 @@ type EventFormProps = {
   id: string | null
   section_id: string | number | readonly string[] | undefined
 }
-// searchParams: {[section_id: string]: string | string[] | undefined}
 
 async function getItem(id: string) {
   const origin = process.env.NEXT_PUBLIC_ORIGIN
   const response = await fetch(`${origin}/api/get-event?id=${id}`, {
     cache: 'no-store',
   })
-  /*
-  const response = await fetch(`${origin}/api/get-event?id=${id}`, {
-    cache: 'no-store',
-  })
-  */
   const data = await response.json()
   return data
 }
 
 export async function EventForm({SaveEvent, id, section_id}: EventFormProps) {
-  console.log('EventForm: section_id', section_id)
-
   let summary = ''
   let detail = ''
   let complete = false
@@ -37,7 +29,6 @@ export async function EventForm({SaveEvent, id, section_id}: EventFormProps) {
   if (id) {
     const events = await getItem(id)
     const event = events[0]
-    console.log('event', event)
     summary = event.summary
     detail = event.detail
     complete = event.complete
