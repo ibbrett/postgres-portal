@@ -4,7 +4,7 @@
 
 NextJS v13 handles the retrieval of query parameters differently for client-side and server-side components
 
-### Query Param Retrieval - client-side
+### client-side
 
 ```js
 'use client'
@@ -18,11 +18,9 @@ export default function Page() {
 }
 ```
 
-### Query Param Retrieval - server-side
+### server-side
 
 ```js
-'use client'
-
 type Props = {
   params: {}
   searchParams: {section_id: string}
