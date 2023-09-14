@@ -12,4 +12,5 @@ This is a [Next.js](https://nextjs.org/) project deployed to [Vercel](https://ve
 - [Setup](./README/README-SETUP.md)
 - [Query Parameters](./README/README-QUERY-PARAMS.md)
 - [Notes](./README/README-NOTES.md)
+- [Crash Course](./README/README-CRASH-COURSE.md)
 - [Links](./README/README-LINKS.md)
