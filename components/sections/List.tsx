@@ -6,6 +6,7 @@ import {FaPlus} from 'react-icons/fa'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
 import {Loading} from '@/components/controls/Loading'
+import {SectionItem} from './SectionItem'
 
 type SectionItemProps = {
   created_at: string
@@ -30,11 +31,21 @@ export function List() {
     doFetch()
   }, [])
 
+  function deleteSection(id: number) {
+    const filtered = sections.filter(item => item.id !== id)
+    setSections(filtered)
+  }
+
   return (
     <>
       <header className={headerStyle}>
         <h1 className={h1Style}>Section List</h1>
-        <Link href=".." className={linkStyle}>
+        <Link
+          className={linkStyle}
+          href={{
+            pathname: '/sections/new',
+          }}
+        >
           <FaPlus />
         </Link>
       </header>
@@ -47,10 +58,19 @@ export function List() {
         />
       ) : (
         <ul>
+          {/*
           {sections.map((section, i) => (
             <li key={i}>
               {i + 1}) {section.name}
             </li>
+          ))}
+          */}
+          {sections.map((section, i) => (
+            <SectionItem
+              key={section.id}
+              {...section}
+              deleteSection={deleteSection}
+            />
           ))}
         </ul>
       )}

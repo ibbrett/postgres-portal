@@ -1,11 +1,13 @@
+import {spinnerOuter, spinnerInner} from '@/utils/styles'
+
 type SpinnerProps = {
   spinnerColor: string
 }
 
 export const Spinner = ({spinnerColor}: SpinnerProps) => {
   return (
-    <div className="flex h-screen">
-      <div className="mx-auto">
+    <div className={spinnerOuter}>
+      <div className={spinnerInner}>
         <svg
           aria-hidden="true"
           className={`w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 ${spinnerColor}`}

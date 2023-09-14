@@ -106,7 +106,10 @@ export default function Home() {
   }
 
   async function doFetch() {
+    console.log('fetchSection(section_id)', section_id)
+
     const eventSection = await fetchSection(section_id)
+
     setSectionName(eventSection.section.name)
 
     const activeEvents = await fetchActiveEvents(section_id)

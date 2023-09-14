@@ -1,5 +1,87 @@
 import {redirect} from 'next/navigation'
 const useData = () => {
+  async function SaveSection(data: FormData) {
+    'use server'
+
+    const id = data.get('id')?.valueOf()
+
+    type PostFormDataProps = {
+      name: string
+      type: string
+    }
+
+    type PutFormDataProps = {
+      id: string | {}
+      name: string
+      type: string
+    }
+
+    type FormDataPostPayload = {
+      data: PostFormDataProps
+    }
+
+    type FormDataPutPayload = {
+      data: PutFormDataProps
+    }
+
+    try {
+      const name = data.get('name')?.valueOf()
+      if (typeof name !== 'string') {
+        throw new Error('Invalid Name')
+      }
+
+      const type = data.get('type')?.valueOf()
+      if (typeof type !== 'string') {
+        throw new Error('Invalid Type')
+      }
+
+      const postFormData = async (payload: FormDataPostPayload) => {
+        console.log('payload', payload)
+        const origin = process.env.NEXT_PUBLIC_ORIGIN
+        const response = await fetch(`${origin}/api/create-section`, {
+          method: 'POST',
+          body: JSON.stringify(payload),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+
+        const data = await response.json()
+      }
+
+      const putFormData = async (payload: FormDataPutPayload) => {
+        const origin = process.env.NEXT_PUBLIC_ORIGIN
+        const response = await fetch(`${origin}/api/update-section`, {
+          method: 'PUT',
+          body: JSON.stringify(payload),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+
+        const data = await response.json()
+      }
+
+      if (id === undefined) {
+        postFormData({
+          data: {name, type},
+        })
+      } else {
+        putFormData({
+          data: {
+            id,
+            name,
+            type,
+          },
+        })
+      }
+    } catch (e) {
+      console.log('unable to save section', e)
+    }
+
+    redirect('/sections')
+  }
+
   async function SaveEvent(data: FormData) {
     'use server'
 
@@ -93,13 +175,13 @@ const useData = () => {
         })
       }
     } catch (e) {
-      console.log('unable to SaveEvent', e)
+      console.log('unable to save event', e)
     }
 
     redirect('/sections/event?section_id=' + section_id)
   }
 
-  return {SaveEvent}
+  return {SaveEvent, SaveSection}
 }
 
 export {useData}

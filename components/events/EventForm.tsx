@@ -1,6 +1,13 @@
 import Link from 'next/link'
 import {DateTime} from '@/components/DateTime'
-import {form_field, linkStyle} from '@/utils/styles'
+import {
+  formStyle,
+  formField,
+  linkStyle,
+  headerStyle,
+  h1Style,
+  formButtonContainer,
+} from '@/utils/styles'
 
 type EventAction = (data: FormData) => void
 
@@ -39,16 +46,16 @@ export async function EventForm({SaveEvent, id, section_id}: EventFormProps) {
 
   return (
     <>
-      <header className="flex justify-between mb-4 items-center">
-        <h1 className="text-2xl">{pageTitle}</h1>
+      <header className={headerStyle}>
+        <h1 className={h1Style}>{pageTitle}</h1>
       </header>
-      <form action={SaveEvent} className="flex gap-2 flex-col">
+      <form action={SaveEvent} className={formStyle}>
         <span>Summary</span>{' '}
         <input
           type="text"
           name="summary"
           defaultValue={summary}
-          className={form_field}
+          className={formField}
           placeholder="Add event title here..."
         />
         <span>Detail</span>{' '}
@@ -56,7 +63,7 @@ export async function EventForm({SaveEvent, id, section_id}: EventFormProps) {
           name="detail"
           rows={4}
           defaultValue={detail}
-          className={form_field}
+          className={formField}
           placeholder="Add event details here..."
         />
         <span>
@@ -64,13 +71,13 @@ export async function EventForm({SaveEvent, id, section_id}: EventFormProps) {
           <input
             type="checkbox"
             defaultChecked={complete}
-            className={form_field}
+            className={formField}
             name="complete"
           />
         </span>
         <span>Date / Time</span>
         <DateTime name="timestamp" timestamp={timestamp} />
-        <div className="flex gap-1 justify-end">
+        <div className={formButtonContainer}>
           <Link
             href={{pathname: '/sections/event', query: {section_id: section_id}}}
             className={linkStyle}

@@ -1,7 +1,15 @@
 import Link from 'next/link'
 import {useFiles} from '@/hooks/useFiles'
 import {FaArrowLeft} from 'react-icons/fa'
-import {linkStyle, form_field, headerStyle, h1Style, hr} from '@/utils/styles'
+import {
+  linkStyle,
+  formField,
+  headerStyle,
+  h1Style,
+  hr,
+  formButtonContainer,
+  formStyle,
+} from '@/utils/styles'
 
 const tuyo = {
   lyrics: [
@@ -39,15 +47,15 @@ export default function Page() {
           <FaArrowLeft />
         </Link>
       </header>
-      <form action={CreateEvent} className="flex gap-2 flex-col">
+      <form action={CreateEvent} className={formStyle}>
         <span>[.env.development.local] App Title</span>
         <input
           type="text"
           name="title"
           defaultValue={appTitle}
-          className={form_field}
+          className={formField}
         />
-        <div className="flex gap-1 justify-end">
+        <div className={formButtonContainer}>
           <button type="submit" className={linkStyle}>
             Save Updates
           </button>

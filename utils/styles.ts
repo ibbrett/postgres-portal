@@ -8,7 +8,7 @@ const padding = 'px-2 py-1'
 
 const inactive = 'bg-palette-inactive'
 
-const form_field = `${text} ${border} ${padding} ${inactive} ${focus} ${active} ${hover}` //
+const formField = `${text} ${border} ${padding} ${inactive} ${focus} ${active} ${hover}` //
 const linkStyle = `${border} ${text} ${padding} ${hover} ${focus}` // align-items: center
 const DateTimeStyle = `${text} ${border} ${padding} ${inactive} ${focus} ${active} ${hover}`
 const eventDetail = `${inactive} p-2 ml-14 font-mono ${text} ${border}`
@@ -30,8 +30,14 @@ const dateString = `cursor-pointer  ${archived} whitespace-pre`
 
 const hr = 'my-10'
 
+const formStyle = 'flex gap-2 flex-col'
+const formButtonContainer = 'flex gap-1 justify-end'
+
+const spinnerOuter = 'flex h-screen'
+const spinnerInner = 'mx-auto'
+
 export {
-  form_field,
+  formField,
   linkStyle,
   iconSampleStyle,
   preStyle,
@@ -47,4 +53,8 @@ export {
   dateString,
   eventDetail,
   hr,
+  formStyle,
+  formButtonContainer,
+  spinnerOuter,
+  spinnerInner,
 }
