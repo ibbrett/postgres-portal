@@ -1,6 +1,6 @@
 # Next.js version 13 Crash Course
 
-## [Tutorial #1 - Introduction & New Features](https://youtu.be/TJQbDPGzm0Y?si=Ij4ohT2mq5moxwoj)
+## Tutorial #1 - Introduction & New Features
 
 - New `server components`
 - New app directory (supports server components out of the box)
