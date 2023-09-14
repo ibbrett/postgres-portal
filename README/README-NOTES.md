@@ -1,34 +1,9 @@
-# Notes
+# Next.js version 13 Notes
 
-## Query Param Retrieval
+## New Features
 
-NextJS v13 handles the retrieval of query parameters differently for client-side and server-side components
+### Server Components
 
-### client-side
-
-```js
-'use client'
-
-import {useSearchParams} from 'next/navigation'
-
-export default function Page() {
-  const searchParams = useSearchParams()
-  const section_id = searchParams.get('section_id')
-  ...
-}
-```
-
-### server-side
-
-```js
-type Props = {
-  params: {}
-  searchParams: {section_id: string}
-}
-
-export default function Page(props: Props) {
-  const searchParams = props.searchParams
-  const section_id = searchParams.section_id
-  ...
-}
-```
+In previous versions all components were essentially `client components`
+This meant the components were `hydrated` at the browser
+Hydration is the process of using client-side JavaScript to add application state and interactivity to server-rendered HTML
