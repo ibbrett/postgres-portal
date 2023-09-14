@@ -1,10 +1,9 @@
 'use client'
 
-import {useUtils} from '@/hooks/useUtils'
 import {DeleteSection} from '@/components/sections/DeleteSection'
 import {EditSection} from '@/components/sections/EditSection'
 import {itemContainerStyle, dateString, eventDetail} from '@/utils/styles'
-import {useState} from 'react'
+import Link from 'next/link'
 
 type SectionItemProps = {
   id: number
@@ -19,9 +18,16 @@ export function SectionItem({id, name, type, deleteSection}: SectionItemProps) {
       <span className={`${itemContainerStyle}`}>
         <DeleteSection id={id} deleteSection={deleteSection} />
         <EditSection id={id} />
-        <label className={''}>
+        <Link
+          href={{
+            pathname: `/sections/${type}`,
+            query: {
+              section_id: id,
+            },
+          }}
+        >
           {name} [{type}]
-        </label>
+        </Link>
       </span>
     </li>
   )

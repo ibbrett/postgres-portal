@@ -28,6 +28,7 @@ export async function SectionForm({SaveSection, id}: SectionFormProps) {
   let name = ''
   let type = ''
   let pageTitle = 'New Section'
+  let selectDisabled = false
 
   if (id) {
     const sections = await getItem(id)
@@ -38,6 +39,7 @@ export async function SectionForm({SaveSection, id}: SectionFormProps) {
     name = section.name
     type = section.type
     pageTitle = 'Edit Section'
+    selectDisabled = true
   }
 
   const types = ['log', 'blog', 'event']
@@ -57,7 +59,12 @@ export async function SectionForm({SaveSection, id}: SectionFormProps) {
           placeholder="Add section name here..."
         />
         <div>Type</div>{' '}
-        <select name="type" defaultValue={type} className={formField}>
+        <select
+          name="type"
+          defaultValue={type}
+          className={formField}
+          disabled={selectDisabled}
+        >
           {types.map((item, index) => (
             <option key={index} value={item}>
               {item}
