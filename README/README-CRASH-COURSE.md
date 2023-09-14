@@ -38,4 +38,23 @@
 
 ## Tutorial #6 - Fetching & Revalidating Data
 
-- Foo
+- async components
+- fetch async functions
+- map(), key={ticket.id}
+- dynamic &lt;div className={`pill ${ticket.priority}`} />
+- by default nextjs: dedupes the data and caches the data
+- "revalidate" the cached data on a timed interval to refetch the data
+- revalidate can be set to 0 to never cache the data
+
+## Tutorial #7 - Dynamic Segments (Params)
+
+- route parameters - create subfolder with square brackets - tickets/[id]
+
+```js
+export default function TicketDetails({params}) {
+  const id = params.id
+  return <div>TicketDetails : {id}</div>
+}
+```
+
+## Tutorial #8 - Static Rendering
