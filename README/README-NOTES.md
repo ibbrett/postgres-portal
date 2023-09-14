@@ -13,4 +13,18 @@ Hydration is the process of using client-side JavaScript to add application stat
 
 ### Client Components
 
+- Hydrated in the browser
 - For any components that use `state`, `effects`, `router`, `events` you will be using client components
+
+## Crash Course
+
+### Tutorial #1
+
+- New `server components`
+- New app directory (supports server components out of the box)
+- Streaming and Suspense - serve up "loading" portions of the page
+- Route Handlers
+- npm create-next-all@latest
+- npm run dev
+
+### Tutorial #2
