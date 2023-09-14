@@ -33,8 +33,8 @@
 - Tailwind
 - @apply tailwind classes to certain tags/elements in globals.css (body, nav, h1, button, etc ...)
 - \*come back to this to update globals.css, apply global tag styles, like styling a form
-- <Link><Button/><Link/>
-- <Image> component - adding logo to presentation - interesting attributes: quality={100}, placeholder='blur'
+- &lt;Link>&lt;Button/>&lt;Link/>
+- &lt;Image> component - adding logo to presentation - interesting attributes: quality={100}, placeholder='blur'
 
 ## Tutorial #6 - Fetching & Revalidating Data
 
