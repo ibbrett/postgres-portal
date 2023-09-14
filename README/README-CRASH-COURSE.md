@@ -58,3 +58,47 @@ export default function TicketDetails({params}) {
 ```
 
 ## Tutorial #8 - Static Rendering
+
+- pre-render. pre-generate static pages (which will improve performance) on the existing items
+
+```js
+export async function generateStaticParams() {
+  // return an array of objects
+  const res = await fetch('http://localhost:3000/tickets')
+  const tickets = await res.json()
+  return tickets.map(ticket => ({
+    id: ticket.id,
+  }))
+}
+```
+
+- create a 404 if item does not exist
+
+```js
+export const dynamicParams = false
+```
+
+- alt, create a 404 if item does not exist
+
+```js
+export const dynamicParams = true
+
+...
+
+async function getTicket(id){
+  const res = await fetch('http://localhost:3000/tickets' + id, {
+    next: {
+      revalidate: 60
+    }
+  })
+
+  if(!res.ok){
+    notFound()
+  }
+}
+
+```
+
+## Tutorial #9 - Custom 404 Page
+
+- Foo
