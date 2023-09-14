@@ -1,10 +1,12 @@
 import './globals.css'
 import type {Metadata} from 'next'
 // import {Inter} from 'next/font/google'
+// import {Rubik} from 'next/font/google'
 // import {Phudu as PrimaryFont} from 'next/font/google'
 import {Roboto_Serif as PrimaryFont} from 'next/font/google'
 
 // const inter = Inter({subsets: ['latin']})
+// const rubik = Rubik({subsets: ['latin']})
 const inter = PrimaryFont({subsets: ['latin']})
 
 export const metadata: Metadata = {
