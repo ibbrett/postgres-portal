@@ -106,11 +106,9 @@ export default function Home() {
   }
 
   async function doFetch() {
-    console.log('fetchSection(section_id)', section_id)
-
-    const eventSection = await fetchSection(section_id)
-
-    setSectionName(eventSection.section.name)
+    const eventSections = await fetchSection(section_id)
+    const eventSection = eventSections[0]
+    setSectionName(eventSection.name)
 
     const activeEvents = await fetchActiveEvents(section_id)
     const archivedEvents = await fetchArchivedEvents(section_id)

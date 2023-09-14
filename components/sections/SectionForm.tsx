@@ -32,10 +32,7 @@ export async function SectionForm({SaveSection, id}: SectionFormProps) {
 
   if (id) {
     const sections = await getItem(id)
-    console.log('sections', sections)
-    // why is this diff from getItem used by events
-    // clean this up - routes are different
-    const section = sections.section
+    const section = sections[0]
     name = section.name
     type = section.type
     pageTitle = 'Edit Section'
