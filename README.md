@@ -8,6 +8,7 @@ This is a [Next.js](https://nextjs.org/) project deployed to [Vercel](https://ve
 
 ## Readme Files
 
-- [`Getting Started`](./README/README-GETTING-STARTED.md)
+- [Getting Started](./README/README-GETTING-STARTED.md)
 - [Setup](./README/README-SETUP.md)
+- [Notes](./README/README-NOTES.md)
 - [Links](./README/README-LINKS.md)

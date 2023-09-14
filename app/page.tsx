@@ -67,9 +67,6 @@ export default function Home() {
           ]
         </span>
         <span className={rowStyle}>
-          <Link className={linkStyle} href="/notes">
-            <FaStickyNote />
-          </Link>
           <Link className={linkStyle} href="/settings">
             <FaCog />
           </Link>
