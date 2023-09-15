@@ -152,3 +152,10 @@ await new Promise(resolve => setTimeout(resolve, 3000))
 - set disabled attribute for submit button, onSubmit change text on button as well
 - create async handleSubmit function - add e.preventDefault() and setIsLoading(true)
 - router.refresh() and router.push('/tickets')
+
+## Tutorial #12 - Building the App
+
+- npm run build
+- circles, unfilled - static pages without initial props (static)
+- circles, filled - static pages with initial props (ssr), like the TicketDetails page
+- lambda - dynamically rendered, like the Tickets page ... b/c we don't watch the fetch to be cached
