@@ -1,3 +1,7 @@
+/*
+#002244 for college navy, #69BE28 for action green, and #A5ACAF for wolf gray.
+*/
+
 const focus = 'focus:bg-palette-active focus:border-palette-ring ' // focus:outline-none focus:ring-palette-ring focus:ring
 const hover = 'hover:bg-palette-hover hover:border-palette-ring ' // hover:outline-none hover:ring-palette-ring hover:ring
 const active =

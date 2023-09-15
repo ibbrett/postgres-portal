@@ -3,6 +3,22 @@
 @tailwind utilities;
 
 @layer base {
+
+/* button styles */
+button {
+  @apply 
+    px-3 py-2 
+    rounded-md
+    flex justify-between items-center gap-2
+    text-sm;
+    background-color: #002244;
+    color: #A5ACAF;
+}
+button:hover {
+  @apply bg-opacity-90;
+  background-color: #69BE28;
+  color: white;
+}
   
   pre {
     margin: 5px;

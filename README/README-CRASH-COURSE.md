@@ -101,4 +101,46 @@ async function getTicket(id){
 
 ## Tutorial #9 - Custom 404 Page
 
-- Foo
+Pages can be scoped to different parts of the app
+
+- not-found.tsx
+
+```js
+import Link from 'next/link'
+export default function NotFound() {
+  return (
+    &lt;main className="text-center">
+      &lt;h1 className="text-3xl">Page requested not found&lt;/h1>
+      &lt;Link href="/">
+        &lt;button>Home Page</button>
+      &lt;/Link>
+    &lt;/main>
+  )
+}
+```
+
+## Tutorial #10 - Loading UI & Suspense
+
+- create a loading.js file which will display a static loading screen
+
+```js
+export defaultfunction Loading() {
+  return (
+    &lt;main className="text-center">
+      &lt;h2 className="text-primary">Loading&lt;/h2>
+      &lt;p>Hopefully not for too long :)&lt;/p>
+    &lt;/main>
+  )
+}
+```
+
+```js
+// simulated delay
+await new Promise(resolve => setTimeout(resolve, 3000))
+```
+
+```js
+&lt;Suspense fallback={&lt;Loading />}>
+  &lt;TicketList />
+&lt;/Suspense>
+```
