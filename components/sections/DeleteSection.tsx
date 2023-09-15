@@ -1,5 +1,5 @@
 import {FaTrash} from 'react-icons/fa'
-import {clickable} from '@/utils/styles'
+import {iconContainer} from '@/utils/styles'
 
 type DeleteProps = {
   id: number
@@ -24,7 +24,7 @@ export function DeleteSection({id, deleteSection}: DeleteProps) {
           deleteItem(id)
         }
       }}
-      className={clickable}
+      className={iconContainer}
     >
       <FaTrash />
     </span>

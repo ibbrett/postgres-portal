@@ -15,6 +15,11 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
+        seahawk: {
+          blue: '#002244', // college navy
+          green: '#69BE28', // action green
+          gray: '#A5ACAF', // wolf gray
+        },
         portal: {
           dark: '#ddd',
           light: '#555',

@@ -1,11 +1,8 @@
 'use client'
 
-import Link from 'next/link'
-import {headerStyle, h1Style, linkStyle} from '@/utils/styles'
-import {FaPlus} from 'react-icons/fa'
+import {Loading} from '@/components/controls/Loading'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
-import {Loading} from '@/components/controls/Loading'
 import {SectionItem} from './SectionItem'
 
 type SectionItemProps = {
@@ -15,10 +12,9 @@ type SectionItemProps = {
   type: string
   updated_at: string
 }
-
 const defaultResults: SectionItemProps[] = []
 
-export function List() {
+export function SectionItems() {
   const [sections, setSections] = useState(defaultResults)
   const {fetchSections} = useFetch()
 
@@ -38,18 +34,6 @@ export function List() {
 
   return (
     <>
-      <header className={headerStyle}>
-        <h1 className={h1Style}>Section List</h1>
-        <Link
-          className={linkStyle}
-          href={{
-            pathname: '/sections/new',
-          }}
-        >
-          <FaPlus />
-        </Link>
-      </header>
-
       {sections.length === 0 ? (
         <Loading
           msg="Fetching Sections ..."

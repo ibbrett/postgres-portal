@@ -1,9 +1,7 @@
-'use client'
-
 import {DeleteSection} from '@/components/sections/DeleteSection'
-import {EditSection} from '@/components/sections/EditSection'
-import {itemContainerStyle, dateString, eventDetail} from '@/utils/styles'
+import {itemContainerStyle} from '@/utils/styles'
 import Link from 'next/link'
+import {EditItem} from '@/components/controls/buttons/EditItem'
 
 type SectionItemProps = {
   id: number
@@ -17,7 +15,7 @@ export function SectionItem({id, name, type, deleteSection}: SectionItemProps) {
     <li key={id} className={''}>
       <span className={`${itemContainerStyle}`}>
         <DeleteSection id={id} deleteSection={deleteSection} />
-        <EditSection id={id} />
+        <EditItem pathname="/sections/edit" query={{id: id}} />
         <Link
           href={{
             pathname: `/sections/${type}`,

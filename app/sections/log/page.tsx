@@ -1,20 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import {
-  linkStyle,
-  ulStyle,
-  headerStyle,
-  h1Style,
-  rowStyle,
-  sectionHeader,
-  hr,
-} from '@/utils/styles'
-import {FaArrowLeft} from 'react-icons/fa'
+import {linkStyle, headerStyle, h1Style, rowStyle, hr} from '@/utils/styles'
 import {Loading} from '@/components/controls/Loading'
 import {useState, useEffect} from 'react'
 import {useSearchParams} from 'next/navigation'
 import {useFetch} from '@/hooks/useFetch'
+import {BackButton} from '@/components/controls/buttons/BackButton'
 
 export default function Log() {
   // get section_id param using client-side query params method
@@ -45,9 +37,7 @@ export default function Log() {
       <header className={headerStyle}>
         <h1 className={h1Style}>{sectionName} logs</h1>
         <span className={rowStyle}>
-          <Link href=".." className={linkStyle} style={{padding: '8px'}}>
-            <FaArrowLeft />
-          </Link>
+          <BackButton />
           <Link
             className={linkStyle}
             href={{

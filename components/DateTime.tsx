@@ -20,7 +20,7 @@ export function DateTime({name, timestamp}: DateTimeProps) {
   const [startDate, setStartDate] = useState<Value>(defaultDate)
   return (
     <DateTimePicker
-      className={DateTimeStyle}
+      className={`${DateTimeStyle} date-time-picker`}
       name={name}
       value={startDate}
       onChange={date => setStartDate(date)}

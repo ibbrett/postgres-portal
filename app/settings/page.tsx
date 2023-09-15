@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import {useFiles} from '@/hooks/useFiles'
-import {FaArrowLeft} from 'react-icons/fa'
 import {
   linkStyle,
   formField,
@@ -10,6 +9,7 @@ import {
   formButtonContainer,
   formStyle,
 } from '@/utils/styles'
+import {BackButton} from '@/components/controls/buttons/BackButton'
 
 const tuyo = {
   lyrics: [
@@ -43,9 +43,7 @@ export default function Page() {
     <>
       <header className={headerStyle}>
         <h1 className={h1Style}>Settings</h1>
-        <Link href=".." className={linkStyle}>
-          <FaArrowLeft />
-        </Link>
+        <BackButton />
       </header>
       <form action={CreateEvent} className={formStyle}>
         <span>[.env.development.local] App Title</span>

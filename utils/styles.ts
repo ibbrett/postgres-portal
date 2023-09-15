@@ -1,23 +1,20 @@
-/*
-#002244 for college navy, #69BE28 for action green, and #A5ACAF for wolf gray.
-*/
-
+const verticallyCenter = 'items-center flex'
 const focus = 'focus:bg-palette-active focus:border-palette-ring ' // focus:outline-none focus:ring-palette-ring focus:ring
-const hover = 'hover:bg-palette-hover hover:border-palette-ring ' // hover:outline-none hover:ring-palette-ring hover:ring
+const hover = 'hover:bg-palette-hover hover:border-palette-ring cursor-pointer' // hover:outline-none hover:ring-palette-ring hover:ring
 const active =
   'active:bg-palette-active active:border-palette-ring active:outline-none' // active:outline-none active:ring-palette-ring active:ring
 const border = 'border border-slate-800 rounded' // outline-none
 const text = 'text-palette-text placeholder-palette-placeholder text-sm' // 'text-slate-800'
 const padding = 'px-2 py-1'
 
-const inactive = 'bg-palette-inactive'
+const inactive = '' // 'bg-palette-inactive'
 
-const formField = `${text} ${border} ${padding} ${inactive} ${focus} ${active} ${hover}` //
-const linkStyle = `${border} ${text} ${padding} ${hover} ${focus}` // align-items: center
+const formField = `${text} ${border} ${padding} ${inactive} ${focus} ${active} ${hover}`
+const linkStyle = `${border} ${text} ${padding} ${hover} ${focus} ${verticallyCenter}`
 const DateTimeStyle = `${text} ${border} ${padding} ${inactive} ${focus} ${active} ${hover}`
 const eventDetail = `${inactive} p-2 ml-14 font-mono ${text} ${border}`
 
-const clickable = 'cursor-pointer'
+const iconContainer = 'cursor-pointer items-center flex'
 const archived = 'peer-checked:text-slate-500' // peer-checked:line-through
 
 const iconSampleStyle = 'cursor-pointer'
@@ -52,7 +49,7 @@ export {
   ulStyle,
   rowStyle,
   DateTimeStyle,
-  clickable,
+  iconContainer,
   sectionHeader,
   dateString,
   eventDetail,

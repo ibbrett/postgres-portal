@@ -3,9 +3,9 @@
 import {useUtils} from '@/hooks/useUtils'
 import {ToggleEventComplete} from '@/components/events/ToggleEventComplete'
 import {DeleteEvent} from '@/components/events/DeleteEvent'
-import {EditEvent} from '@/components/events/EditEvent'
 import {itemContainerStyle, dateString, eventDetail} from '@/utils/styles'
 import {useState} from 'react'
+import {EditItem} from '@/components/controls/buttons/EditItem'
 
 type EventItemProps = {
   id: number
@@ -48,7 +48,7 @@ export function EventItem({
           moveToggledEvent={moveToggledEvent}
         />
         <DeleteEvent id={id} type={type} deleteEvent={deleteEvent} />
-        <EditEvent id={id} />
+        <EditItem pathname="/sections/event/edit" query={{id: id}} />
         {/* removed from label to only allow checkbox to handle toggle - htmlFor={id.toString()} */}
         <label onClick={toggleItem} className={`${dateString}`}>
           {normalizeDateTimeTitle(timestamp, summary)}

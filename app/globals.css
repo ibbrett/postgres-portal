@@ -2,39 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
 
-/* button styles */
-button {
-  @apply 
-    px-3 py-2 
-    rounded-md
-    flex justify-between items-center gap-2
-    text-sm;
-    background-color: #002244;
-    color: #A5ACAF;
-}
-button:hover {
-  @apply bg-opacity-90;
-  background-color: #69BE28;
-  color: white;
-}
+
+  /* button styles */
+  button {
+    @apply 
+      px-3 py-2 
+      rounded-md
+      flex justify-between items-center gap-2
+      text-sm
+      bg-seahawk-blue
+      text-seahawk-gray;
+  }
+  button:hover {
+    @apply 
+      bg-opacity-90
+      bg-seahawk-green
+      text-white;
+  }
   
+  /* pre styles */
   pre {
-    margin: 5px;
+    @apply
+      m-3;
   }
 
+    /* form styles */
+    
+    form {
+      @apply 
+        py-4 px-7 
+        bg-seahawk-gray 
+        bg-opacity-5 
+        rounded-md 
+        block 
+        mx-auto 
+        min-w-fit w-1/2;
+    }
+    form label {
+      @apply block;
+    }
+    form input,
+    form textarea,
+    form select {
+      @apply 
+         block
+        mt-2 my-4 px-2 py-1 
+        rounded-sm w-full;
+    }
+    /*form button {
+      @apply block mx-auto;
+    }*/
+    form .date-time-picker input,
+    form .date-time-picker textarea,
+    form .date-time-picker select {
+      @apply 
+        inline
+        m-0
+        p-0
+        w-auto;
+    }
+
+
+  /* custom classes */
   li.by-date.active {
-      height: 24px;
+    @apply 
+      h-7;
   }
 
   li.by-date {
-      height: auto;
-      overflow: hidden;
-      font-family: monospace;
-      overflow: hidden;
-      line-height: 16px;
-      font-size: 16px; /*0.9375em;*/
+    @apply 
+      h-auto
+      overflow-hidden
+      font-mono
+      text-base;
   }
 
-}
+
