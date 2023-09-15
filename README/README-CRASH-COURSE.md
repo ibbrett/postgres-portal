@@ -148,3 +148,7 @@ await new Promise(resolve => setTimeout(resolve, 3000))
 ## Tutorial #11 - Client Form Component
 
 - Create a CreateTicket server component, and add a CreateForm client component
+- In "use client" component import useRouter and useState
+- set disabled attribute for submit button, onSubmit change text on button as well
+- create async handleSubmit function - add e.preventDefault() and setIsLoading(true)
+- router.refresh() and router.push('/tickets')
