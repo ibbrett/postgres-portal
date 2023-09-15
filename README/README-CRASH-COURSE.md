@@ -109,12 +109,12 @@ Pages can be scoped to different parts of the app
 import Link from 'next/link'
 export default function NotFound() {
   return (
-    &lt;main className="text-center">
-      &lt;h1 className="text-3xl">Page requested not found&lt;/h1>
-      &lt;Link href="/">
-        &lt;button>Home Page</button>
-      &lt;/Link>
-    &lt;/main>
+    <main className="text-center">
+      <h1 className="text-3xl">Page requested not found</h1>
+      <Link href="/">
+        <button>Home Page</button>
+      </Link>
+    </main>
   )
 }
 ```
@@ -126,10 +126,10 @@ export default function NotFound() {
 ```js
 export defaultfunction Loading() {
   return (
-    &lt;main className="text-center">
-      &lt;h2 className="text-primary">Loading&lt;/h2>
-      &lt;p>Hopefully not for too long :)&lt;/p>
-    &lt;/main>
+    <main className="text-center">
+      <h2 className="text-primary">Loading</h2>
+      <p>Hopefully not for too long :)</p>
+    </main>
   )
 }
 ```
@@ -140,7 +140,11 @@ await new Promise(resolve => setTimeout(resolve, 3000))
 ```
 
 ```js
-&lt;Suspense fallback={&lt;Loading />}>
-  &lt;TicketList />
-&lt;/Suspense>
+<Suspense fallback={<Loading />}>
+  <TicketList />
+</Suspense>
 ```
+
+## Tutorial #11 - Client Form Component
+
+- Create a CreateTicket server component, and add a CreateForm client component
