@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <header className={headerStyle}>
         <AppTitle />
-        <SectionsNav />
+        {/*<SectionsNav />*/}
         <span className={rowStyle}>
           <Link className={linkStyle} href="/settings">
             <FaCog />
@@ -18,6 +18,7 @@ export default function Home() {
         </span>
       </header>
       <hr className={hr} />
+      <h2>Docs</h2>
     </>
   )
 }
