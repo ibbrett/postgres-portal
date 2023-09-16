@@ -7,6 +7,7 @@ import {useState, useEffect} from 'react'
 import {useSearchParams} from 'next/navigation'
 import {useFetch} from '@/hooks/useFetch'
 import {BackButton} from '@/components/controls/buttons/BackButton'
+import {AddButton} from '@/components/controls/buttons/AddButton'
 
 export default function Log() {
   // get section_id param using client-side query params method
@@ -39,15 +40,6 @@ export default function Log() {
         <h1 className={h1Style}>{sectionName} logs</h1>
         <span className={rowStyle}>
           <BackButton />
-          <Link
-            className={linkStyle}
-            href={{
-              pathname: '/sections/log/new',
-              query: {section_id: section_id},
-            }}
-          >
-            New Log
-          </Link>
         </span>
       </header>
 
@@ -60,7 +52,10 @@ export default function Log() {
           spinnerColor="fill-blue-600"
         />
       ) : (
-        <h1>Nothing to see here yet</h1>
+        <div className={headerStyle}>
+          <h1>Nothing to see here yet</h1>
+          {/*<AddButton pathname="/sections/log/new" query={{section_id: section_id}} />*/}
+        </div>
       )}
     </>
   )

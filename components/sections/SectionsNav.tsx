@@ -3,6 +3,10 @@
 import Link from 'next/link'
 import {useFetch} from '@/hooks/useFetch'
 import {useState, useEffect} from 'react'
+import {useSearchParams} from 'next/navigation'
+
+// not currently un use, not shared as a header
+import {SectionNavItem} from '@/components/sections/SectionNavItem'
 
 type SectionItemProps = {
   created_at: string
@@ -15,6 +19,8 @@ type SectionItemProps = {
 const defaultResults: SectionItemProps[] = []
 
 export function SectionsNav() {
+  const searchParams = useSearchParams()
+  const section_id = searchParams.get('section_id')
   const [results, setResults] = useState(defaultResults)
   const {fetchSections} = useFetch()
 
@@ -29,6 +35,10 @@ export function SectionsNav() {
 
   if (results.length === 0) return null
 
+  results.map((item, index) => {
+    console.log('### item, section_id', item, section_id)
+  })
+
   return (
     <span>
       [{' '}
@@ -36,6 +46,16 @@ export function SectionsNav() {
         index > 0 ? (
           <span key={item.name}>
             {' | '}
+            {/*
+            <SectionNavItem
+              isSame={
+                typeof section_id === 'string' && parseInt(section_id) === item.id
+              }
+              id={item.id}
+              name={item.name}
+              type={item.type}
+            />
+            */}
             <Link
               href={{
                 pathname: '/sections/' + item.type,
