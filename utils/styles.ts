@@ -7,7 +7,7 @@ const border = 'border border-slate-800 rounded' // outline-none
 const text = 'text-palette-text placeholder-palette-placeholder text-sm' // 'text-slate-800'
 const padding = 'px-2 py-1'
 
-const inactive = '' // 'bg-palette-inactive'
+const inactive = 'bg-palette-inactive'
 
 const formField = `${text} ${border} ${padding} ${inactive} ${focus} ${active} ${hover}`
 const linkStyle = `${border} ${text} ${padding} ${hover} ${focus} ${verticallyCenter}`
@@ -37,6 +37,10 @@ const formButtonContainer = 'flex gap-1 justify-end'
 const spinnerOuter = 'flex h-screen'
 const spinnerInner = 'mx-auto'
 
+// only keep these around if sections nav is successful
+const sectionLink = `${hover}`
+const sectionLabel = 'text-seahawk-gray'
+
 export {
   formField,
   linkStyle,
@@ -58,4 +62,6 @@ export {
   formButtonContainer,
   spinnerOuter,
   spinnerInner,
+  sectionLink,
+  sectionLabel,
 }
