@@ -22,8 +22,9 @@ export default function Log() {
 
   async function doFetch() {
     // get section info
-    const eventSection = await fetchSection(section_id)
-    setSectionName(eventSection.section.name)
+    const eventSections = await fetchSection(section_id)
+    const eventSection = eventSections[0]
+    setSectionName(eventSection.name)
 
     setLogsFetched(true)
   }
