@@ -162,9 +162,8 @@ $ touch index.test.js
 $ touch jest.setup.js
 ```
 
-```json
+```js
 import '@testing-library/jest-dom/extend-expect'
-
 ```
 
 ### Create first test
