@@ -80,16 +80,16 @@ $ touch jest.config.js
 
 Add the following to the config file
 
-```json
-const nextJest = require("next/jest");
+```js
+const nextJest = require('next/jest')
 const createJestConfig = nextJest({
-  dir: "./",
-});
+  dir: './',
+})
 const customJestConfig = {
-  moduleDirectories: ["node_modules", "<rootDir>/"],
-  testEnvironment: "jest-environment-jsdom",
-};
-module.exports = createJestConfig(customJestConfig);
+  moduleDirectories: ['node_modules', '<rootDir>/'],
+  testEnvironment: 'jest-environment-jsdom',
+}
+module.exports = createJestConfig(customJestConfig)
 ```
 
 ### Create the Jest configuration file in project root (outdated)
