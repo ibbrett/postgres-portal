@@ -98,7 +98,7 @@ module.exports = createJestConfig(customJestConfig)
 $ touch jest.config.mjs
 ```
 
-```json
+```js
 import nextJest from 'next/jest.js'
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -113,7 +113,6 @@ const config = {
 }
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
 export default createJestConfig(config)
-
 ```
 
 ### Create the Jest configuration file in project root (here we go again)
@@ -122,7 +121,7 @@ export default createJestConfig(config)
 $ touch jest.config.js
 ```
 
-```javascript
+```js
 const nextJest = require('next/jest')
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -176,7 +175,7 @@ $ cd __tests__
 $ touch Home.test.tsx
 ```
 
-```json
+```js
 import {render, screen} from '@testing-library/react'
 import Home from '@/app/page'
 
@@ -186,7 +185,6 @@ it('should have Docs text', () => {
   const myElement = screen.getByText('Docs') // 2. ACT
   expect(myElement).toBeInTheDocument() // 3. ASSERT
 })
-
 ```
 
 ### Ran into issues with next and testing-library/jest-dom versions
