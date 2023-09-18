@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {linkStyle, headerStyle, h1Style} from '@/utils/styles'
 import {FaCog} from 'react-icons/fa'
 import {rowStyle, hr} from '@/utils/styles'
-import {SectionsNav} from '@/components/sections/SectionsNav'
+// import {SectionsNav} from '@/components/sections/SectionsNav'
 import {AppTitle} from '@/components/AppTitle'
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
         </span>
       </header>
       <hr className={hr} />
-      <h2>Docs</h2>
+      <h2>Postgres Portal</h2>
     </>
   )
 }
