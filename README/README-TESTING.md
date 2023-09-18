@@ -42,5 +42,5 @@ Cypress is a web testing framework that simplifies and automates **end-to-end te
 
 ### links
 
-[How to use Jest and Cypress together?](https://www.linkedin.com/advice/0/how-do-you-use-jest-cypress-web-development-skills-web-development)
-[Jest Tutorial for Beginners: Getting Started With JavaScript Testing](https://www.valentinog.com/blog/jest/)
+- [How to use Jest and Cypress together?](https://www.linkedin.com/advice/0/how-do-you-use-jest-cypress-web-development-skills-web-development)
+- [Jest Tutorial for Beginners: Getting Started With JavaScript Testing](https://www.valentinog.com/blog/jest/)
