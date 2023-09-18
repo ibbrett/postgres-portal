@@ -120,3 +120,9 @@ changed bundler to node
   }
 }
 ```
+
+[Unable to run Cypress open command in Next.js project with Typescript](https://stackoverflow.com/questions/76875739/unable-to-run-cypress-open-command-in-next-js-project-with-typescript)
+
+## links
+
+[Writing Your First E2E Test](https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test)
