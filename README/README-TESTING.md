@@ -6,7 +6,7 @@
 
 Jest is a JavaScript testing framework that is designed to work with any JavaScript project, from React to Vue, Angular, Node, and more. It offers a range of features to make testing easy and enjoyable, such as fast parallel execution, built-in code coverage and mocking support, snapshot testing, interactive watch mode, customizable matchers and assertions, and seamless integration with other tools and libraries. _With Jest you can write unit tests, integration tests, and snapshot tests for your web components, logic, and data_. Plus, it supports TypeScript, Babel, and webpack so you can use the latest JavaScript features and syntax.
 
-- By default, Jest expects to find test files in a folder called __tests__ in your project folder
+- By default, Jest expects to find test files in a folder called &lowbar;&lowbar;tests&lowbar;&lowbar; in your project folder
 
 ### you can:
 
