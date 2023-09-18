@@ -40,7 +40,7 @@ $ npm run cy:open
 - We've changed the default Cypress config file from: cypress.json to cypress.config.ts
 - [Configuration](https://docs.cypress.io/guides/references/configuration)
 
-```json
+```ts
 import {defineConfig} from 'cypress'
 
 export default defineConfig({
