@@ -1,7 +1,7 @@
 import {defineConfig} from 'cypress'
 
 export default defineConfig({
-  projectId: 'tyhfus',
+  projectId: 'postgres_portal',
   component: {
     specPattern: 'app/**/*.cy.{js,jsx,ts,tsx}',
     devServer: {
@@ -16,5 +16,10 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    excludeSpecPattern: [], // add items here to exclude from test runs
   },
+
+  // you can change viewport
+  viewportHeight: 500,
+  viewportWidth: 768,
 })

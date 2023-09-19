@@ -1,5 +1,5 @@
-describe('sepc.cy.ts', () => {
-  it('shoulld visit', () => {
+describe('spec.cy.ts', () => {
+  it('should visit', () => {
     cy.visit('/')
     cy.contains('Postgres Portal')
   })
