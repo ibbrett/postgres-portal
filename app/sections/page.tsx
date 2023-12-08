@@ -7,7 +7,7 @@ export default function Page() {
   return (
     <>
       <header className={headerStyle}>
-        <AppTitle />
+        <AppTitle page="Sections" />
         <BackButton />
       </header>
       <hr className={hr} />

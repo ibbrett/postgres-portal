@@ -17,9 +17,7 @@ type SectionFormProps = {
 
 async function getItem(id: string) {
   const origin = process.env.NEXT_PUBLIC_ORIGIN
-  const response = await fetch(`${origin}/api/get-section?section_id=${id}`, {
-    cache: 'no-store',
-  })
+  const response = await fetch(`${origin}/api/get-section?section_id=${id}`) // , {cache: 'no-store'}
   const data = await response.json()
   return data
 }

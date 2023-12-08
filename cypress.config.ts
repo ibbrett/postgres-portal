@@ -16,7 +16,11 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    excludeSpecPattern: [], // add items here to exclude from test runs
+    excludeSpecPattern: [
+      'cypress/tests/sample-google',
+      'cypress/tests/getting-started',
+    ], // add items here to exclude from test runs
+    // testIsolation: false,
   },
 
   // you can change viewport

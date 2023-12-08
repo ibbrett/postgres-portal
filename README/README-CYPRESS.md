@@ -127,3 +127,4 @@ changed bundler to node
 
 [Writing Your First E2E Test](https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test)
 [Component Testing with Cypress 12 and NextJS 13 Using TypeScript] (https://blog.bitsrc.io/component-testing-with-cypress-12-and-nextjs-13-using-typescript-14825ea05f58)
+[Cypress Configuration Made easy](https://youtu.be/_MtvLZFLPCU?si=qCE6FBUtDFm3-EmN) - YouTube video with config settings options, etc

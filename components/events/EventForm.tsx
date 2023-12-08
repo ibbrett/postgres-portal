@@ -19,9 +19,7 @@ type EventFormProps = {
 
 async function getItem(id: string) {
   const origin = process.env.NEXT_PUBLIC_ORIGIN
-  const response = await fetch(`${origin}/api/get-event?id=${id}`, {
-    cache: 'no-store',
-  })
+  const response = await fetch(`${origin}/api/get-event?id=${id}`) // , {cache: 'no-store'}
   const data = await response.json()
   return data
 }
@@ -47,7 +45,9 @@ export async function EventForm({SaveEvent, id, section_id}: EventFormProps) {
   return (
     <>
       <header className={headerStyle}>
-        <h1 className={h1Style}>{pageTitle}</h1>
+        <h1 data-header="event-form-header" className={h1Style}>
+          {pageTitle}
+        </h1>
       </header>
       <form action={SaveEvent} className={formStyle}>
         <span>Summary</span>{' '}

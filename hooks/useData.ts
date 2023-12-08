@@ -1,4 +1,5 @@
 import {redirect} from 'next/navigation'
+//import {useRouter} from 'next/navigation'
 const useData = () => {
   async function SaveSection(data: FormData) {
     'use server'
@@ -80,13 +81,76 @@ const useData = () => {
     }
 
     redirect('/sections')
+    // return redirect('/sections')
   }
 
   async function SaveEvent(data: FormData) {
     'use server'
 
+    type PostFormDataProps = {
+      section_id: string | {} | undefined
+      summary: string
+      complete: boolean
+      timestamp: number
+      detail: string
+    }
+
+    type PutFormDataProps = {
+      id: string | {}
+      section_id: string | {} | undefined
+      summary: string
+      complete: boolean
+      timestamp: number
+      detail: string
+    }
+
+    type FormDataPostPayload = {
+      data: PostFormDataProps
+    }
+
+    type FormDataPutPayload = {
+      data: PutFormDataProps
+    }
+
+    // const router = useRouter()
     const id = data.get('id')?.valueOf()
     const section_id = data.get('section_id')?.valueOf()
+
+    const postFormData = async (payload: FormDataPostPayload) => {
+      //try {
+      const origin = process.env.NEXT_PUBLIC_ORIGIN
+      //const origin = 'http://127.0.0.1:3000'
+      const response = await fetch(`${origin}/api/create-event`, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      })
+
+      const data = await response.json()
+      // console.log('data', data)
+      return data
+      //} catch (e) {
+      // console.error('Bullshit error', e)
+      //}
+    }
+
+    const putFormData = async (payload: FormDataPutPayload) => {
+      const origin = process.env.NEXT_PUBLIC_ORIGIN
+      const response = await fetch(`${origin}/api/update-event`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      const data = await response.json()
+      // console.log('data', data)
+      return data
+    }
 
     try {
       const summary = data.get('summary')?.valueOf()
@@ -107,63 +171,14 @@ const useData = () => {
 
       const complete = data.get('complete') === null ? false : true
 
-      type PostFormDataProps = {
-        section_id: string | {} | undefined
-        summary: string
-        complete: boolean
-        timestamp: number
-        detail: string
-      }
-
-      type PutFormDataProps = {
-        id: string | {}
-        section_id: string | {} | undefined
-        summary: string
-        complete: boolean
-        timestamp: number
-        detail: string
-      }
-
-      type FormDataPostPayload = {
-        data: PostFormDataProps
-      }
-
-      type FormDataPutPayload = {
-        data: PutFormDataProps
-      }
-
-      const postFormData = async (payload: FormDataPostPayload) => {
-        const origin = process.env.NEXT_PUBLIC_ORIGIN
-        const response = await fetch(`${origin}/api/create-event`, {
-          method: 'POST',
-          body: JSON.stringify(payload),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-
-        const data = await response.json()
-      }
-
-      const putFormData = async (payload: FormDataPutPayload) => {
-        const origin = process.env.NEXT_PUBLIC_ORIGIN
-        const response = await fetch(`${origin}/api/update-event`, {
-          method: 'PUT',
-          body: JSON.stringify(payload),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-
-        const data = await response.json()
-      }
-
+      let responseData
       if (id === undefined) {
-        postFormData({
+        responseData = await postFormData({
           data: {section_id, summary, complete, timestamp: date.getTime(), detail},
         })
+        //redirect('/sections/event?section_id=' + section_id)
       } else {
-        putFormData({
+        responseData = await putFormData({
           data: {
             id,
             section_id,
@@ -173,12 +188,17 @@ const useData = () => {
             detail,
           },
         })
+        //redirect('/sections/event?section_id=' + section_id)
       }
+
+      console.log('responseData', JSON.stringify(responseData.events.rows, null, 2))
     } catch (e) {
       console.log('unable to save event', e)
     }
 
+    // redirect('/sections/event?section_id=' + section_id)
     redirect('/sections/event?section_id=' + section_id)
+    // router.push('/sections/event?section_id=' + section_id)
   }
 
   return {SaveEvent, SaveSection}

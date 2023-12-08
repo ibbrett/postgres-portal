@@ -44,7 +44,7 @@ export function SectionsNav() {
       [{' '}
       {results.map((item, index) =>
         index > 0 ? (
-          <span key={item.name}>
+          <span id="sections-navigation" key={item.name}>
             {' | '}
             {/*
             <SectionNavItem

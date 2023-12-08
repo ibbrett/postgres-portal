@@ -19,6 +19,7 @@ export function DeleteSection({id, deleteSection}: DeleteProps) {
 
   return (
     <span
+      data-section-delete={id}
       onClick={() => {
         if (window.confirm('Are you certain you want to remove this item?')) {
           deleteItem(id)

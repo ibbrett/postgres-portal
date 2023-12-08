@@ -44,7 +44,8 @@ Cypress is a web testing framework that simplifies and automates **end-to-end te
 
 - [How to use Jest and Cypress together?](https://www.linkedin.com/advice/0/how-do-you-use-jest-cypress-web-development-skills-web-development)
 - [Jest Tutorial for Beginners: Getting Started With JavaScript Testing](https://www.valentinog.com/blog/jest/)
+- [Google Auth: Google OAuth 2.0 Playground](https://docs.cypress.io/guides/end-to-end-testing/google-authentication)
 
 ## Types of Testing 
 
-E2E testing is usually performed after integration testing, which tests individual modules, and before user acceptance testing, which ensures that the application meets the user’s requirements.
+*E2E testing* is usually performed after *integration testing*, which tests individual modules, and before user *acceptance testing*, which ensures that the application meets the user’s requirements.

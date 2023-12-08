@@ -13,10 +13,11 @@ type SectionItemProps = {
 export function SectionItem({id, name, type, deleteSection}: SectionItemProps) {
   return (
     <li key={id} className={''}>
-      <span className={`${itemContainerStyle}`}>
-        <DeleteSection id={id} deleteSection={deleteSection} />
-        <EditItem pathname="/sections/edit" query={{id: id}} />
+      <span data-parent={name} className={`${itemContainerStyle}`}>
+        <DeleteSection data-delete={name} id={id} deleteSection={deleteSection} />
+        <EditItem data-edit={name} pathname="/sections/edit" query={{id: id}} />
         <Link
+          data-label={name}
           href={{
             pathname: `/sections/${type}`,
             query: {

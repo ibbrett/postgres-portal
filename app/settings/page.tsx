@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <>
       <header className={headerStyle}>
-        <AppTitle />
+        <AppTitle page="Settings" />
         <BackButton />
       </header>
       <hr className={hr} />

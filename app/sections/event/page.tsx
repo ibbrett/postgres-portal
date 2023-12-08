@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <header className={headerStyle}>
-        <AppTitle />
+        <AppTitle page="Events" />
         {/*<SectionsNav />*/}
         <BackButton />
       </header>
