@@ -25,6 +25,7 @@
   pre {
     @apply
       m-3;
+      white-space: pre-wrap;
   }
 
     /* form styles */
